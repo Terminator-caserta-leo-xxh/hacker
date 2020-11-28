@@ -18,7 +18,7 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public ResponseVO register(String name, String passwd,
-                               String cellphone, String address,
+                               String cellphone, String address, String email,
                                Date beginTime, Date endTime,
                                String description, String photoUrl) {
         if (vendorMapper.findByUsername(name) != null) return ResponseVO.buildFailed("用户名已存在", -1);
@@ -39,26 +39,39 @@ public class VendorServiceImpl implements VendorService {
         vendorEntity.setIsOpen(0);
         VendorEntity vendor = vendorMapper.save(vendorEntity);
 
-        return ResponseVO.buildSucceed("注册申请提交成功，请等待管理员审核！", 0, vendor);
+        return ResponseVO.buildSucceed("注册申请提交成功，请等待管理员审核！", 0, new VendorVO(vendor));
     }
 
     @Override
     public ResponseVO login(String name, String passwd) {
         VendorEntity vendorEntity = vendorMapper.findByUsernameAndPasswd(name, passwd);
         if (vendorEntity == null) return ResponseVO.buildFailed("未注册或密码不正确！", -1);
-        return ResponseVO.buildSucceed("登录成功！", 0, vendorEntity);
+        return ResponseVO.buildSucceed("登录成功！", 0, new VendorVO(vendorEntity));
     }
 
     @Override
-    public VendorVO modifyInfo(int vendorId, String name,
-                               String cellphone, Date beginTime, Date endTime,
-                               String photoUrl) {
-        return null;
+    public ResponseVO modifyInfo(int vendorId, String name,
+                                 String cellphone, String email, Date beginTime, Date endTime, String description,
+                                 String photoUrl) {
+
+        VendorEntity vendorEntity = vendorMapper.findById(vendorId);
+        if (vendorEntity == null) return ResponseVO.buildFailed("用户不存在！", -1);
+
+        if (name != null) vendorEntity.setUsername(name);
+        if (cellphone != null) vendorEntity.setCellphone(cellphone);
+        if (beginTime != null) vendorEntity.setBeginTime(beginTime);
+        if (endTime != null) vendorEntity.setEndTime(endTime);
+        if (email != null) vendorEntity.setEmail(email);
+        if (description != null) vendorEntity.setDescription(description);
+        if (photoUrl != null) vendorEntity.setLocationUrl(photoUrl);
+
+        vendorEntity = vendorMapper.save(vendorEntity);
+        return ResponseVO.buildSucceed("修改成功！", 0, new VendorVO(vendorEntity));
     }
 
     @Override
     public void changePasswd(int vendorId, String oldPasswd, String newPasswd) {
-
+        
     }
 
 }

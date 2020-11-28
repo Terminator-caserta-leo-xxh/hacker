@@ -30,10 +30,11 @@ public class VendorController {
         Date endTime = vendorForm.getEndTime();
         String description = vendorForm.getDescription();
         String localPhotoUrl = vendorForm.getLocationPhotoUrl();
+        String email = vendorForm.getEmail();
         /**
          * 如果失败了不会加入数据库，成功了则会
          */
-        return vendorService.register(name, passwd, cellphone, address, beginTime, endTime, description, localPhotoUrl);
+        return vendorService.register(name, passwd, cellphone, address, email, beginTime, endTime, description, localPhotoUrl);
     }
 
     @PostMapping("/login")
@@ -43,7 +44,24 @@ public class VendorController {
         if (!responseVO.isSuccess()) return responseVO;
         VendorVO vendorVO = new VendorVO((VendorEntity) responseVO.getData());
         httpSession.setAttribute("userName", vendorVO.getUsername());
+        httpSession.setAttribute("userId", vendorVO.getId());
         return responseVO;
+    }
+
+    @PostMapping("/update")
+    public ResponseVO update(HttpSession httpSession, @RequestBody VendorForm vendorForm) {
+        if (httpSession.getAttribute("userName") == null) return ResponseVO.buildFailed("请先登录！", -1);
+        int userId = (Integer) httpSession.getAttribute("userId");
+
+        String name = vendorForm.getName();
+        String cellphone = vendorForm.getCellphone();
+        Date beginTime = vendorForm.getBeginTime();
+        Date endTime = vendorForm.getEndTime();
+        String description = vendorForm.getDescription();
+        String localPhotoUrl = vendorForm.getLocationPhotoUrl();
+        String email = vendorForm.getEmail();
+
+        return vendorService.modifyInfo(userId, name, cellphone, email, beginTime, endTime, description, localPhotoUrl);
     }
 
 }

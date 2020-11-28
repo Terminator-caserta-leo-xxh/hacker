@@ -3,6 +3,7 @@ package cn.nju.edu.hacker.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 
 @Data
@@ -32,10 +33,6 @@ public class VendorEntity {
     private String email;
 
     @Basic
-    @Column(name = "UID")
-    private Integer uid;
-
-    @Basic
     @Column(name = "isValid")
     private int isValid;
 
@@ -54,5 +51,13 @@ public class VendorEntity {
     @Basic
     @Column(name = "locationUrl")
     private String locationUrl;
+
+    @Basic
+    @Column(name = "beginTime")
+    private Date beginTime;
+
+    @Basic
+    @Column(name = "endTime")
+    private Date endTime;
 
 }

@@ -101,7 +101,6 @@ CREATE TABLE `student`
     `passwd`    varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `cellphone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
     `email`     varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-    `UID`       int                                                          NOT NULL,
     `privilege` int                                                          NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
@@ -125,7 +124,6 @@ CREATE TABLE `vendor`
     `passwd`      varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NOT NULL,
     `cellphone`   varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL     DEFAULT NULL,
     `email`       varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL     DEFAULT NULL,
-    `UID`         int                                                           NULL     DEFAULT NULL,
     `isValid`     int                                                           NOT NULL DEFAULT 0,
     `isOpen`      int                                                           NOT NULL DEFAULT 0,
     `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL     DEFAULT NULL,

@@ -26,8 +26,6 @@ public class DishForm {
 
     private Integer uid;
 
-    private int id;
-
     /**
      * 是否售罄
      */
