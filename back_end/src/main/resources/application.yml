@@ -5,10 +5,8 @@ spring:
     url: jdbc:mysql://localhost:3306/hackthon?serverTimezone=UTC&useLegacyDatetimeCode=false&useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: update
     show-sql: true
     database: mysql
 
 server:
-  port: 8081
+  port: 8000

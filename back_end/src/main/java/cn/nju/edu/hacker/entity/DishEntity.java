@@ -15,7 +15,7 @@ public class DishEntity {
     private Date endTime;
     private Integer uid;
     private int id;
-    private Integer isValid;
+    private int isValid;
     private Integer maxSupply;
 
     @Basic
@@ -110,11 +110,11 @@ public class DishEntity {
 
     @Basic
     @Column(name = "isValid")
-    public Integer getIsValid() {
+    public int getIsValid() {
         return isValid;
     }
 
-    public void setIsValid(Integer isValid) {
+    public void setIsValid(int isValid) {
         this.isValid = isValid;
     }
 
@@ -137,6 +137,7 @@ public class DishEntity {
 
         if (timeType != that.timeType) return false;
         if (id != that.id) return false;
+        if (isValid != that.isValid) return false;
         if (dishName != null ? !dishName.equals(that.dishName) : that.dishName != null) return false;
         if (price != null ? !price.equals(that.price) : that.price != null) return false;
         if (cumulativeSales != null ? !cumulativeSales.equals(that.cumulativeSales) : that.cumulativeSales != null)
@@ -145,7 +146,6 @@ public class DishEntity {
         if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
         if (endTime != null ? !endTime.equals(that.endTime) : that.endTime != null) return false;
         if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
-        if (isValid != null ? !isValid.equals(that.isValid) : that.isValid != null) return false;
         if (maxSupply != null ? !maxSupply.equals(that.maxSupply) : that.maxSupply != null) return false;
 
         return true;
@@ -162,7 +162,7 @@ public class DishEntity {
         result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
         result = 31 * result + (uid != null ? uid.hashCode() : 0);
         result = 31 * result + id;
-        result = 31 * result + (isValid != null ? isValid.hashCode() : 0);
+        result = 31 * result + isValid;
         result = 31 * result + (maxSupply != null ? maxSupply.hashCode() : 0);
         return result;
     }

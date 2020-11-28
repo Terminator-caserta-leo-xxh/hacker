@@ -13,7 +13,7 @@ public class OrderEntity {
     private String remarks;
     private int id;
     private String description;
-    private Integer isValid;
+    private int isValid;
 
     @Basic
     @Column(name = "studentID")
@@ -97,11 +97,11 @@ public class OrderEntity {
 
     @Basic
     @Column(name = "isValid")
-    public Integer getIsValid() {
+    public int getIsValid() {
         return isValid;
     }
 
-    public void setIsValid(Integer isValid) {
+    public void setIsValid(int isValid) {
         this.isValid = isValid;
     }
 
@@ -116,11 +116,11 @@ public class OrderEntity {
         if (vendorId != that.vendorId) return false;
         if (number != that.number) return false;
         if (id != that.id) return false;
+        if (isValid != that.isValid) return false;
         if (sequence != null ? !sequence.equals(that.sequence) : that.sequence != null) return false;
         if (money != null ? !money.equals(that.money) : that.money != null) return false;
         if (remarks != null ? !remarks.equals(that.remarks) : that.remarks != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (isValid != null ? !isValid.equals(that.isValid) : that.isValid != null) return false;
 
         return true;
     }
@@ -135,7 +135,7 @@ public class OrderEntity {
         result = 31 * result + (remarks != null ? remarks.hashCode() : 0);
         result = 31 * result + id;
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (isValid != null ? isValid.hashCode() : 0);
+        result = 31 * result + isValid;
         return result;
     }
 }
