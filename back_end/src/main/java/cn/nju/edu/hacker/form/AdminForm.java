@@ -1,14 +1,11 @@
-package cn.nju.edu.hacker.vo;
+package cn.nju.edu.hacker.form;
 
 import lombok.Data;
 
 @Data
-public class AdminVO {
-
-    private String id;
+public class AdminForm {
 
     private String name;
 
     private String passwd;
-    
 }

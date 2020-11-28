@@ -5,11 +5,13 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface VendorMapper extends CrudRepository<VendorEntity, Integer> {
 
-    VendorEntity findByUid(int uid);
+    VendorEntity findById(int id);
 
     VendorEntity findByUsername(String username);
 
     VendorEntity findByCellphone(String cellphone);
 
     VendorEntity findByAddress(String address);
+
+    VendorEntity findByUsernameAndPasswd(String name, String passwd);
 }

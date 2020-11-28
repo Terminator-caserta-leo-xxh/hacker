@@ -48,13 +48,14 @@ CREATE TABLE `order`
 (
     `studentID`   int                                                           NOT NULL,
     `vendorID`    int                                                           NOT NULL,
-    `sequence`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+    `number`      int                                                           NOT NULL,
+    `sequence`    int                                                           NULL DEFAULT NULL,
     `money`       double(5, 2)                                                  NULL DEFAULT NULL,
     `remarks`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-    `id`          int                                                           NOT NULL AUTO_INCREMENT,
+    `timeStamp`   int                                                           NOT NULL AUTO_INCREMENT,
     `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
     `isValid`     int                                                           NULL DEFAULT 0,
-    PRIMARY KEY (`id`) USING BTREE
+    PRIMARY KEY (`timeStamp`) USING BTREE
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci
@@ -71,7 +72,6 @@ CREATE TABLE `student`
     `passwd`    varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `cellphone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
     `email`     varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-    `UID`       int                                                          NOT NULL,
     `privilege` int                                                          NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
@@ -91,14 +91,12 @@ CREATE TABLE `vendor`
     `passwd`      varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NOT NULL,
     `cellphone`   varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL     DEFAULT NULL,
     `email`       varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL     DEFAULT NULL,
-    `UID`         int                                                           NULL     DEFAULT NULL,
     `isValid`     int                                                           NOT NULL DEFAULT 0,
     `isOpen`      int                                                           NOT NULL DEFAULT 0,
     `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL     DEFAULT NULL,
     `address`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `beginTime`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `endTime`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-    `locationUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4

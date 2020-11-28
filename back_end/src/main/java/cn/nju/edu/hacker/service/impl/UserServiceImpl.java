@@ -21,10 +21,10 @@ public class UserServiceImpl implements UserService {
     public ResponseVO studentRegister(StudentVO studentVO) {
         List<StudentEntity> usernameList = studentMapper.findAllByUsername(studentVO.getUsername());
         if (usernameList.size() != 0)
-            return ResponseVO.buildFailed("该用户名已存在");
+            return ResponseVO.buildFailed("该用户名已存在", -1);
         List<StudentEntity> cellphoneList = studentMapper.findAllByCellphone(studentVO.getCellphone());
         if (cellphoneList.size() != 0)
-            return ResponseVO.buildFailed("该手机号已被绑定");
+            return ResponseVO.buildFailed("该手机号已被绑定", -1);
 
         StudentEntity student = new StudentEntity();
         int uid = studentMapper.findAll().get(studentMapper.findAll().size()).getUid() + 1;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         student.setUsername(studentVO.getUsername());
         student.setEmail(studentVO.getEmail());
         studentMapper.save(student);
-        return ResponseVO.buildSucceed("UID:" + uid);
+        return ResponseVO.buildSucceed("UID:" + uid, 0);
 
     }
 
@@ -55,25 +55,25 @@ public class UserServiceImpl implements UserService {
         }
         if (flag) {
             studentMapper.save(student);
-            return ResponseVO.buildSucceed("修改成功");
+            return ResponseVO.buildSucceed("修改成功", 0);
         } else
-            return ResponseVO.buildFailed("修改失败");
+            return ResponseVO.buildFailed("修改失败", -1);
     }
 
     @Override
     public ResponseVO studentLogin(StudentVO studentVO) {
         StudentEntity student = studentMapper.findByUid(studentVO.getUid());
         if (student.getPasswd().equals(studentVO.getPasswd()))
-            return ResponseVO.buildSucceed("登陆成功", student);
+            return ResponseVO.buildSucceed("登陆成功", 0, student);
         else
-            return ResponseVO.buildFailed("密码错误");
+            return ResponseVO.buildFailed("密码错误", -1);
     }
 
     @Override
     public ResponseVO studentLook(String uid) {
         int UID = Integer.parseInt(uid);
         StudentEntity student = studentMapper.findByUid(UID);
-        return ResponseVO.buildSucceed("" + student);
+        return ResponseVO.buildSucceed("" + student, 0);
     }
 
     @Override

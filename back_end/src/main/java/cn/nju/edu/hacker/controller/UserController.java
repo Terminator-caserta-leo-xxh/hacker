@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 
 @RestController
 public class UserController {
@@ -26,8 +28,16 @@ public class UserController {
     }
 
     @PostMapping("/api/studentLogin")
-    public ResponseVO studentLogin(@RequestBody StudentVO studentVO) {
+    public ResponseVO studentLogin(HttpSession httpSession, @RequestBody StudentVO studentVO) {
+        if (httpSession.getAttribute(String.valueOf(studentVO.getUid())).equals(1))
+            return ResponseVO.buildSucceed("ok",1);
         return userService.studentLogin(studentVO);
+    }
+
+    @PostMapping("/api/studentLogin")
+    public ResponseVO studentExit(HttpSession httpSession, @RequestBody StudentVO studentVO) {
+        httpSession.removeAttribute(String.valueOf(studentVO.getUid()));
+        return ResponseVO.buildSucceed("ok",1);
     }
 
     @PostMapping("/api/student/{uid}")

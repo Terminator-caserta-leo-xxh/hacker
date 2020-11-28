@@ -22,8 +22,6 @@ public class VendorVO {
 
     private String email;
 
-    private Integer uid;
-
     private int isValid;
 
     private int isOpen;
@@ -38,7 +36,6 @@ public class VendorVO {
         this.passwd = entity.getPasswd();
         this.cellphone = entity.getCellphone();
         this.email = entity.getEmail();
-        this.uid = entity.getUid();
         this.isValid = entity.getIsValid();
         this.description = entity.getDescription();
         this.address = entity.getDescription();
