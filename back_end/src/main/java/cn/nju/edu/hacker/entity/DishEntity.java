@@ -1,13 +1,11 @@
 package cn.nju.edu.hacker.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Dish {
+@Table(name = "dish", schema = "hackthon", catalog = "")
+public class DishEntity {
     private String dishName;
     private Double price;
     private Integer cumulativeSales;
@@ -135,20 +133,20 @@ public class Dish {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Dish dish = (Dish) o;
+        DishEntity that = (DishEntity) o;
 
-        if (timeType != dish.timeType) return false;
-        if (id != dish.id) return false;
-        if (dishName != null ? !dishName.equals(dish.dishName) : dish.dishName != null) return false;
-        if (price != null ? !price.equals(dish.price) : dish.price != null) return false;
-        if (cumulativeSales != null ? !cumulativeSales.equals(dish.cumulativeSales) : dish.cumulativeSales != null)
+        if (timeType != that.timeType) return false;
+        if (id != that.id) return false;
+        if (dishName != null ? !dishName.equals(that.dishName) : that.dishName != null) return false;
+        if (price != null ? !price.equals(that.price) : that.price != null) return false;
+        if (cumulativeSales != null ? !cumulativeSales.equals(that.cumulativeSales) : that.cumulativeSales != null)
             return false;
-        if (orderNums != null ? !orderNums.equals(dish.orderNums) : dish.orderNums != null) return false;
-        if (startTime != null ? !startTime.equals(dish.startTime) : dish.startTime != null) return false;
-        if (endTime != null ? !endTime.equals(dish.endTime) : dish.endTime != null) return false;
-        if (uid != null ? !uid.equals(dish.uid) : dish.uid != null) return false;
-        if (isValid != null ? !isValid.equals(dish.isValid) : dish.isValid != null) return false;
-        if (maxSupply != null ? !maxSupply.equals(dish.maxSupply) : dish.maxSupply != null) return false;
+        if (orderNums != null ? !orderNums.equals(that.orderNums) : that.orderNums != null) return false;
+        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
+        if (endTime != null ? !endTime.equals(that.endTime) : that.endTime != null) return false;
+        if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
+        if (isValid != null ? !isValid.equals(that.isValid) : that.isValid != null) return false;
+        if (maxSupply != null ? !maxSupply.equals(that.maxSupply) : that.maxSupply != null) return false;
 
         return true;
     }

@@ -1,12 +1,10 @@
 package cn.nju.edu.hacker.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Order {
+@Table(name = "order", schema = "hackthon", catalog = "")
+public class OrderEntity {
     private int studentId;
     private int vendorId;
     private int number;
@@ -15,6 +13,7 @@ public class Order {
     private String remarks;
     private int timeStamp;
     private String description;
+    private Integer isValid;
 
     @Basic
     @Column(name = "studentID")
@@ -92,8 +91,18 @@ public class Order {
         return description;
     }
 
-    public void setDescription(String desrciption) {
-        this.description = desrciption;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Basic
+    @Column(name = "isValid")
+    public Integer getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
     }
 
     @Override
@@ -101,16 +110,17 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Order order = (Order) o;
+        OrderEntity that = (OrderEntity) o;
 
-        if (studentId != order.studentId) return false;
-        if (vendorId != order.vendorId) return false;
-        if (number != order.number) return false;
-        if (timeStamp != order.timeStamp) return false;
-        if (sequence != null ? !sequence.equals(order.sequence) : order.sequence != null) return false;
-        if (money != null ? !money.equals(order.money) : order.money != null) return false;
-        if (remarks != null ? !remarks.equals(order.remarks) : order.remarks != null) return false;
-        if (description != null ? !description.equals(order.description) : order.description != null) return false;
+        if (studentId != that.studentId) return false;
+        if (vendorId != that.vendorId) return false;
+        if (number != that.number) return false;
+        if (timeStamp != that.timeStamp) return false;
+        if (sequence != null ? !sequence.equals(that.sequence) : that.sequence != null) return false;
+        if (money != null ? !money.equals(that.money) : that.money != null) return false;
+        if (remarks != null ? !remarks.equals(that.remarks) : that.remarks != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (isValid != null ? !isValid.equals(that.isValid) : that.isValid != null) return false;
 
         return true;
     }
@@ -125,6 +135,7 @@ public class Order {
         result = 31 * result + (remarks != null ? remarks.hashCode() : 0);
         result = 31 * result + timeStamp;
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (isValid != null ? isValid.hashCode() : 0);
         return result;
     }
 }
