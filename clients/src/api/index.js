@@ -25,7 +25,7 @@ export const delVendor = (id) => deletes(`vendorList/del`,id)
 // 更新目标商铺信息
 export const updateVendorData = (params) => post(`vendorList/update`,params)
 // 获取所有商铺信息
-export const getVendorList = () => get('vendorList')
+export const getVendorList = () => get('vendorList/list')
 // 获取目标商铺信息
 export const getVendorData = (id) => get(`vendorList/detail?vendorID=${id}`)
 // 获取指定商铺名的商铺的信息
@@ -37,7 +37,7 @@ export const getVendorDataByName = (vendorName) => get(`vendorList/vendorNames/d
 // 管理员登录
 export const adminLogin = (params) => post(`admin/login/status`,params)
 // 获取全部用户
-export const getAllUsers = () => get('user')
+export const getAllUsers = () => get('user/list')
 // 获取目标用户
 export const getUser = (id) => get(`user/detail?userID=${id}`)
 // 按用户名查询用户
