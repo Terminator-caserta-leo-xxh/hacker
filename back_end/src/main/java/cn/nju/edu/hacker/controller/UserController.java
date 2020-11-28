@@ -18,12 +18,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/studentRegister")
+    @PostMapping("/api/student")
     public ResponseVO studentRegister(StudentVO studentVO){
         return userService.studentRegister(studentVO);
     }
 
-    @PostMapping("/vendorRegister")
+    @PostMapping("/api/vendor")
     public ResponseVO studentRegister(VendorVO vendorVO){
         return userService.vendorRegister(vendorVO);
     }

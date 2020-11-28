@@ -3,7 +3,7 @@ package cn.nju.edu.hacker.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "student", schema = "hackthon", catalog = "")
+@Table(name = "student", schema = "hackthon")
 public class StudentEntity {
     private int id;
     private String username;
@@ -11,7 +11,6 @@ public class StudentEntity {
     private String cellphone;
     private String email;
     private int uid;
-    private int privilege;
 
     @Id
     @Column(name = "id")
@@ -73,16 +72,6 @@ public class StudentEntity {
         this.uid = uid;
     }
 
-    @Basic
-    @Column(name = "privilege")
-    public int getPrivilege() {
-        return privilege;
-    }
-
-    public void setPrivilege(int privilege) {
-        this.privilege = privilege;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,7 +81,6 @@ public class StudentEntity {
 
         if (id != that.id) return false;
         if (uid != that.uid) return false;
-        if (privilege != that.privilege) return false;
         if (username != null ? !username.equals(that.username) : that.username != null) return false;
         if (passwd != null ? !passwd.equals(that.passwd) : that.passwd != null) return false;
         if (cellphone != null ? !cellphone.equals(that.cellphone) : that.cellphone != null) return false;
@@ -109,7 +97,6 @@ public class StudentEntity {
         result = 31 * result + (cellphone != null ? cellphone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + uid;
-        result = 31 * result + privilege;
         return result;
     }
 }

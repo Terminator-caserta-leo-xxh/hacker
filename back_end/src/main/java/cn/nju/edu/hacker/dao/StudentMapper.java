@@ -12,4 +12,5 @@ public interface StudentMapper extends CrudRepository<StudentEntity, Integer> {
 
     List<StudentEntity> findAllByCellphone(String cellphone);
 
+    List<StudentEntity> findAll();
 }
