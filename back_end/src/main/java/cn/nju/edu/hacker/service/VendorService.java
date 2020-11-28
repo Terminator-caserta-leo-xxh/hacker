@@ -13,6 +13,16 @@ public interface VendorService {
 
     ResponseVO modifyInfo(int vendorId, String name, String cellphone, String email, Date beginTime, Date endTime, String description, String photoUrl);
 
-    void changePasswd(int vendorId, String oldPasswd, String newPasswd);
+    ResponseVO changePasswd(int vendorId, String oldPasswd, String newPasswd);
+
+    ResponseVO delete(int vendorId);
+
+    ResponseVO list();
+
+    ResponseVO find(int id);
+
+    ResponseVO find(String name);
+
+    ResponseVO openOrClose(int id);
 
 }
