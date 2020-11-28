@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "order")
 public class OrderEntity {
+    
     private int studentId;
     private int vendorId;
     private int number;

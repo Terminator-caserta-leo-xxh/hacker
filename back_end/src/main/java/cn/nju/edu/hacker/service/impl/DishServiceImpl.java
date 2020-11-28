@@ -13,7 +13,9 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public DishVO modifyDish() {
+    public DishVO modifyDish(int vendorId, String name, String description,
+                             String price, boolean isSoldOut, String period) {
         return null;
     }
+
 }

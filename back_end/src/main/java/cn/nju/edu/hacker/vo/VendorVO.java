@@ -26,6 +26,8 @@ public class VendorVO {
 
     private int isValid;
 
+    private int isOpen;
+
     private String description;
 
     private String address;

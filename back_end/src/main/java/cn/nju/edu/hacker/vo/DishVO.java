@@ -3,17 +3,40 @@ package cn.nju.edu.hacker.vo;
 
 import lombok.Data;
 
+import java.sql.Date;
+
 @Data
 public class DishVO {
 
-    private String name;
+    private String dishName;
 
-    private String description;
+    private Double price;
 
-    private String price;
+    private Integer cumulativeSales;
 
-    private int isSoldOut;
+    private Integer orderNums;
 
-    private String period;
+    /**
+     * 早午饭
+     */
+    private int timeType;
+
+    private Date startTime;
+
+    private Date endTime;
+
+    /**
+     * 商家标签
+     */
+    private Integer uid;
+
+    private int id;
+
+    /**
+     * 是否售罄
+     */
+    private Integer isValid;
+
+    private Integer maxSupply;
 
 }

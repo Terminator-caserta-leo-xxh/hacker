@@ -1,110 +1,56 @@
 package cn.nju.edu.hacker.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+
+@Data
 @Entity
 @Table(name = "vendor")
 public class VendorEntity {
 
-    private int id;
-    private String username;
-    private String passwd;
-    private String cellphone;
-    private String email;
-    private Integer uid;
-    private int isValid;
-    private String description;
-    private String address;
-
     @Id
+    @GeneratedValue
     @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private int id;
 
     @Basic
     @Column(name = "username")
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private String username;
 
     @Basic
     @Column(name = "passwd")
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
+    private String passwd;
 
     @Basic
     @Column(name = "cellphone")
-    public String getCellphone() {
-        return cellphone;
-    }
-
-    public void setCellphone(String cellphone) {
-        this.cellphone = cellphone;
-    }
+    private String cellphone;
 
     @Basic
     @Column(name = "email")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private String email;
 
     @Basic
     @Column(name = "UID")
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
+    private Integer uid;
 
     @Basic
     @Column(name = "isValid")
-    public int getIsValid() {
-        return isValid;
-    }
+    private int isValid;
 
-    public void setIsValid(int isValid) {
-        this.isValid = isValid;
-    }
+    @Basic
+    @Column(name = "isOpen")
+    private int isOpen;
 
     @Basic
     @Column(name = "description")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private String description;
 
     @Basic
     @Column(name = "address")
-    public String getAddress() {
-        return address;
-    }
+    private String address;
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     @Override
     public boolean equals(Object o) {
