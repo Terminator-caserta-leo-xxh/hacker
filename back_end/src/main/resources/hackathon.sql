@@ -48,14 +48,13 @@ CREATE TABLE `order`
 (
     `studentID`   int                                                           NOT NULL,
     `vendorID`    int                                                           NOT NULL,
-    `number`      int                                                           NOT NULL,
-    `sequence`    int                                                           NULL DEFAULT NULL,
+    `sequence`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
     `money`       double(5, 2)                                                  NULL DEFAULT NULL,
     `remarks`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-    `timeStamp`   int                                                           NOT NULL AUTO_INCREMENT,
+    `id`          int                                                           NOT NULL AUTO_INCREMENT,
     `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
     `isValid`     int                                                           NULL DEFAULT 0,
-    PRIMARY KEY (`timeStamp`) USING BTREE
+    PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci
@@ -99,6 +98,7 @@ CREATE TABLE `vendor`
     `address`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `beginTime`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `endTime`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+    `locationUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4

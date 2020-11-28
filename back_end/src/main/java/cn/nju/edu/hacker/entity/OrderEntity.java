@@ -2,18 +2,35 @@ package cn.nju.edu.hacker.entity;
 
 import javax.persistence.*;
 
+/**
+ * 学生的具体的某个订单
+ */
 @Entity
 @Table(name = "order")
 public class OrderEntity {
-    
+
     private int studentId;
     private int vendorId;
-    private int number;
-    private Integer sequence;
+    /**
+     * format: [id1],[id2]...
+     */
+    private String sequence;
     private Double money;
+    /**
+     * 备注 额外要求
+     */
     private String remarks;
+    /**
+     * id自增长
+     */
     private int id;
+    /**
+     * format: [id1]:[num1],[id2]:[num2]...
+     */
     private String description;
+    /**
+     * 是否完成
+     */
     private int isValid;
 
     @Basic
@@ -36,23 +53,14 @@ public class OrderEntity {
         this.vendorId = vendorId;
     }
 
-    @Basic
-    @Column(name = "number")
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
 
     @Basic
     @Column(name = "sequence")
-    public Integer getSequence() {
+    public String getSequence() {
         return sequence;
     }
 
-    public void setSequence(Integer sequence) {
+    public void setSequence(String sequence) {
         this.sequence = sequence;
     }
 
@@ -115,7 +123,6 @@ public class OrderEntity {
 
         if (studentId != that.studentId) return false;
         if (vendorId != that.vendorId) return false;
-        if (number != that.number) return false;
         if (id != that.id) return false;
         if (isValid != that.isValid) return false;
         if (sequence != null ? !sequence.equals(that.sequence) : that.sequence != null) return false;
@@ -126,17 +133,4 @@ public class OrderEntity {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = studentId;
-        result = 31 * result + vendorId;
-        result = 31 * result + number;
-        result = 31 * result + (sequence != null ? sequence.hashCode() : 0);
-        result = 31 * result + (money != null ? money.hashCode() : 0);
-        result = 31 * result + (remarks != null ? remarks.hashCode() : 0);
-        result = 31 * result + id;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + isValid;
-        return result;
-    }
 }

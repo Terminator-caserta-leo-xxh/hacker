@@ -8,7 +8,7 @@ import java.sql.Date;
 public class DishEntity {
 
     private String dishName;
-    private Double price;
+    private String price;
     private Integer cumulativeSales;
     private Integer orderNums;
     private int timeType;
@@ -31,11 +31,11 @@ public class DishEntity {
 
     @Basic
     @Column(name = "price")
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -129,42 +129,4 @@ public class DishEntity {
         this.maxSupply = maxSupply;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DishEntity that = (DishEntity) o;
-
-        if (timeType != that.timeType) return false;
-        if (id != that.id) return false;
-        if (isValid != that.isValid) return false;
-        if (dishName != null ? !dishName.equals(that.dishName) : that.dishName != null) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
-        if (cumulativeSales != null ? !cumulativeSales.equals(that.cumulativeSales) : that.cumulativeSales != null)
-            return false;
-        if (orderNums != null ? !orderNums.equals(that.orderNums) : that.orderNums != null) return false;
-        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
-        if (endTime != null ? !endTime.equals(that.endTime) : that.endTime != null) return false;
-        if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
-        if (maxSupply != null ? !maxSupply.equals(that.maxSupply) : that.maxSupply != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = dishName != null ? dishName.hashCode() : 0;
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (cumulativeSales != null ? cumulativeSales.hashCode() : 0);
-        result = 31 * result + (orderNums != null ? orderNums.hashCode() : 0);
-        result = 31 * result + timeType;
-        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
-        result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
-        result = 31 * result + (uid != null ? uid.hashCode() : 0);
-        result = 31 * result + id;
-        result = 31 * result + isValid;
-        result = 31 * result + (maxSupply != null ? maxSupply.hashCode() : 0);
-        return result;
-    }
 }

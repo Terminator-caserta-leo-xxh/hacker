@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface StudentMapper extends CrudRepository<StudentEntity, Integer> {
+    
     StudentEntity findByUid(int uid);
 
     List<StudentEntity> findAllByUsername(String username);

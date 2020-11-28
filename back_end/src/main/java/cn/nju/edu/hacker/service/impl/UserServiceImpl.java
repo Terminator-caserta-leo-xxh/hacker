@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         student.setUsername(studentVO.getUsername());
         student.setEmail(studentVO.getEmail());
         studentMapper.save(student);
-        return ResponseVO.buildSucceed("UID:" + String.valueOf(uid));
+        return ResponseVO.buildSucceed("UID:" + uid);
 
     }
 

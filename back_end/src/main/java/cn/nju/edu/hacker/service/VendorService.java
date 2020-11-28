@@ -1,13 +1,14 @@
 package cn.nju.edu.hacker.service;
 
 
+import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.VendorVO;
 
 import java.sql.Date;
 
 public interface VendorService {
 
-    VendorVO register(String name, String passwd, String cellphone, String address, Date beginTime, Date endTime, String photoUrl);
+    ResponseVO register(String name, String passwd, String cellphone, String address, Date beginTime, Date endTime, String description, String photoUrl);
 
     VendorVO login(String name, String passwd);
 
@@ -15,5 +16,4 @@ public interface VendorService {
 
     void changePasswd(int vendorId, String oldPasswd, String newPasswd);
 
-   
 }

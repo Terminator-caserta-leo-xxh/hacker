@@ -9,6 +9,5 @@ public interface DishService {
     DishVO addDish(int vendorId, DishForm dishForm);
 
     DishVO modifyDish(int vendorId, String name, String description, String price, boolean isSoldOut, String period);
-    
 
 }

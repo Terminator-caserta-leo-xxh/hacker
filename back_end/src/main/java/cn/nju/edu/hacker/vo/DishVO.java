@@ -10,7 +10,7 @@ public class DishVO {
 
     private String dishName;
 
-    private Double price;
+    private String price;
 
     private Integer cumulativeSales;
 

@@ -7,18 +7,20 @@ import java.sql.Date;
 @Data
 public class VendorForm {
 
-    public String name;
+    private String name;
 
-    public String passwd;
+    private String passwd;
 
-    public String address;
+    private String address;
 
-    public String cellphone;
+    private String cellphone;
 
-    public Date beginTime;
+    private Date beginTime;
 
-    public Date endTime;
+    private Date endTime;
 
-    public String locationPhotoUrl;
+    private String locationPhotoUrl;
+
+    private String description;
 
 }
