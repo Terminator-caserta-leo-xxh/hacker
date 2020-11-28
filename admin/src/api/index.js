@@ -3,12 +3,14 @@ import {get,post} from './http'
 // ====================== 管理员 API
 // 管理员登录
 export const adminLogin = (params) => post(`admin/login/status`,params)
+// 管理员登出
+export const adminLogout = () => get(`admin/logout/status`)
 // 密码修改
 export const modifyAdminPwd = (password) => post(`admin/password`,password)
 // 获取注册列表
 export const getRegister = () => get(`admin/registerRequests`)
 // 通过注册
-export const passRegister = (params) => post(`admin/passRegister`,params)
+export const passRegister = (id) => post(`admin/${id}/passRegister`)
 
 // ====================== 用户 API
 // 获取全部用户
