@@ -28,8 +28,13 @@ public class OrderEntity {
      * format: [id1]:[num1],[id2]:[num2]...
      */
     private String description;
+
     /**
-     * 是否完成
+     * isValid:
+     * 0 - 暂未付款
+     * 1 - 已付款且没做好
+     * 2 - 已付款，做好而未取货
+     * -1 - 已付款且取货-失效
      */
     private int isValid;
 
@@ -114,23 +119,5 @@ public class OrderEntity {
         this.isValid = isValid;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        OrderEntity that = (OrderEntity) o;
-
-        if (studentId != that.studentId) return false;
-        if (vendorId != that.vendorId) return false;
-        if (id != that.id) return false;
-        if (isValid != that.isValid) return false;
-        if (sequence != null ? !sequence.equals(that.sequence) : that.sequence != null) return false;
-        if (money != null ? !money.equals(that.money) : that.money != null) return false;
-        if (remarks != null ? !remarks.equals(that.remarks) : that.remarks != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-
-        return true;
-    }
 
 }

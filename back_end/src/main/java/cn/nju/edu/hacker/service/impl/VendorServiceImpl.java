@@ -15,7 +15,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service(value = "vendorService")
 public class VendorServiceImpl implements VendorService {
 
     @Autowired
@@ -139,6 +139,7 @@ public class VendorServiceImpl implements VendorService {
         else vendorEntity.setIsOpen(0);
         vendorMapper.save(vendorEntity);
         return ResponseVO.buildSucceed("营业状态改变成功！", 0);
+
     }
 
 }

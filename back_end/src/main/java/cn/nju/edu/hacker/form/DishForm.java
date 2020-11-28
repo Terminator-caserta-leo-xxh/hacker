@@ -7,6 +7,7 @@ import java.sql.Date;
 @Data
 public class DishForm {
 
+
     private String dishName;
 
     private String price;
@@ -18,7 +19,7 @@ public class DishForm {
     /**
      * 早午饭
      */
-    private int timeType;
+    private int id;
 
     private Date startTime;
 

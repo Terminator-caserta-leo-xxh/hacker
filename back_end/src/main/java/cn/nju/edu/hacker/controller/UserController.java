@@ -1,14 +1,13 @@
 package cn.nju.edu.hacker.controller;
 
+import cn.nju.edu.hacker.form.OrderForm;
+import cn.nju.edu.hacker.form.StudentForm;
 import cn.nju.edu.hacker.service.UserService;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.StudentVO;
 import cn.nju.edu.hacker.vo.VendorVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,38 +21,45 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/api/studentRegister")
-    public ResponseVO studentRegister(@RequestBody StudentVO studentVO) {
-        return userService.studentRegister(studentVO);
+    @PostMapping("/user/add")
+    public ResponseVO studentRegister(@RequestBody StudentForm studentForm) {
+            return userService.studentRegister(studentForm);
     }
 
-    @PostMapping("/api/studentLogin")
-    public ResponseVO studentLogin(HttpSession httpSession, @RequestBody StudentVO studentVO) {
-        if (httpSession.getAttribute(String.valueOf(studentVO.getUid())).equals(1))
+    @PostMapping("/user/login/status")
+    public ResponseVO studentLogin(HttpSession httpSession, @RequestBody StudentForm studentForm) {
+        if (httpSession.getAttribute(String.valueOf(studentForm.getId())).equals(1))
             return ResponseVO.buildSucceed("ok",1);
-        return userService.studentLogin(studentVO);
+        return userService.studentLogin(studentForm);
     }
 
-    @PostMapping("/api/studentLogin")
-    public ResponseVO studentExit(HttpSession httpSession, @RequestBody StudentVO studentVO) {
-        httpSession.removeAttribute(String.valueOf(studentVO.getUid()));
+    @PostMapping("/user/{id}/delete")
+    public ResponseVO studentExit(HttpSession httpSession, @PathVariable int id) {
+        httpSession.removeAttribute(String.valueOf(id));
         return ResponseVO.buildSucceed("ok",1);
     }
 
-    @PostMapping("/api/student/{uid}")
-    public ResponseVO studentLook(@PathVariable String uid) {
-        return userService.studentLook(uid);
+    @GetMapping("/user/detail/{id}")
+    public ResponseVO studentLook(@PathVariable int id) {
+        return userService.studentLook(id);
     }
 
-    @PostMapping("/api/studentFix")
-    public ResponseVO studentFix(@RequestBody StudentVO studentVO) {
-        return userService.studentFix(studentVO);
+    @PostMapping("/user/update")
+    public ResponseVO studentFix(@RequestBody StudentForm studentForm) {
+        return userService.studentFix(studentForm);
     }
 
-    @PostMapping("/api/vendor")
-    public ResponseVO studentRegister(@RequestBody VendorVO vendorVO) {
-        return userService.vendorRegister(vendorVO);
+    @GetMapping("/user/shopHistory/{id}")
+    public ResponseVO getShopHistory(@PathVariable int id) {
+        return userService.getShopHistory(id);
     }
 
+    @GetMapping("/user/order/{id}")
+    public ResponseVO getCurrentOrder(@PathVariable int id){return userService.getCurrentOrder(id);}
+
+    @PostMapping("/user/changeOrder")
+    public ResponseVO changeOrder(@RequestBody OrderForm orderForm){
+        return userService.changeOrder(orderForm);
+    }
 
 }

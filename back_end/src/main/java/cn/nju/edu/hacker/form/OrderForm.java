@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 public class OrderForm {
 
+    private int id;
     private int studentId;
     private int vendorId;
     private String sequence;

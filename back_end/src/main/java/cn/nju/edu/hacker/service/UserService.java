@@ -1,5 +1,7 @@
 package cn.nju.edu.hacker.service;
 
+import cn.nju.edu.hacker.form.OrderForm;
+import cn.nju.edu.hacker.form.StudentForm;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.StudentVO;
 import cn.nju.edu.hacker.vo.VendorVO;
@@ -9,16 +11,24 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-    ResponseVO studentRegister(StudentVO studentVO);
+    ResponseVO studentRegister(StudentForm studentForm);
 
-    ResponseVO studentFix(StudentVO studentVO);
+    ResponseVO studentFix(StudentForm studentForm);
 
-    ResponseVO studentLogin(StudentVO studentVO);
+    ResponseVO studentLogin(StudentForm studentForm);
 
-    ResponseVO studentLook(String uid);
-
-    ResponseVO vendorRegister(VendorVO vendorVO);
+    ResponseVO studentLook(int id);
 
     ResponseVO verifyEmail(String email);
 
+    /**
+     * @param id 用户的ID
+     * @return
+     */
+
+    ResponseVO getShopHistory(int id);
+
+    ResponseVO getCurrentOrder(int id);
+
+    ResponseVO changeOrder(OrderForm orderForm);
 }
