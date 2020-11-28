@@ -3,6 +3,8 @@ package cn.nju.edu.hacker.controller;
 
 import cn.nju.edu.hacker.entity.VendorEntity;
 import cn.nju.edu.hacker.form.VendorForm;
+import cn.nju.edu.hacker.service.DishService;
+import cn.nju.edu.hacker.service.OrderService;
 import cn.nju.edu.hacker.service.VendorService;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.VendorVO;
@@ -13,13 +15,19 @@ import javax.servlet.http.HttpSession;
 import java.sql.Date;
 
 @RestController
-@RequestMapping("/api/vendor")
+@RequestMapping("/vendorList")
 public class VendorController {
 
     @Autowired
     private VendorService vendorService;
 
-    @PostMapping("/register")
+    @Autowired
+    private DishService dishService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @PostMapping("/add")
     public ResponseVO register(@RequestBody VendorForm vendorForm) {
 
         String name = vendorForm.getName();
@@ -65,4 +73,37 @@ public class VendorController {
 
     }
 
+    @PostMapping("/{id}/del")
+    public ResponseVO delete(@PathVariable("id") int id) {
+        return vendorService.delete(id);
+    }
+
+    @GetMapping("/list")
+    public ResponseVO getList() {
+        return vendorService.list();
+    }
+
+    @GetMapping("/detail")
+    public ResponseVO getSpecified(@RequestParam(value = "vendorID") int id) {
+        return vendorService.find(id);
+    }
+
+    @GetMapping("/vendorName/detail")
+    public ResponseVO getSpecified(@RequestParam(value = "vendorName") String name) {
+        return vendorService.find(name);
+    }
+
+    @PostMapping("/open")
+    public ResponseVO open(HttpSession httpSession) {
+        if (httpSession.getAttribute("userName") == null) return ResponseVO.buildFailed("请先登录！", -1);
+        int vendorId = (Integer) httpSession.getAttribute("userId");
+        return vendorService.openOrClose(vendorId);
+    }
+
+    @PostMapping("/close")
+    public ResponseVO close(HttpSession httpSession) {
+        if (httpSession.getAttribute("userName") == null) return ResponseVO.buildFailed("请先登录！", -1);
+        int vendorId = (Integer) httpSession.getAttribute("userId");
+        return vendorService.openOrClose(vendorId);
+    }
 }
