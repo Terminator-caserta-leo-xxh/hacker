@@ -31,7 +31,7 @@ CREATE TABLE `dish`  (
   `endTime` date NULL DEFAULT NULL,
   `UID` int NULL DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
-  `isValid` int NULL DEFAULT 0,
+  `isValid` int NOT NULL,
   `maxSupply` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -47,10 +47,10 @@ CREATE TABLE `order`  (
   `sequence` int NULL DEFAULT NULL,
   `money` double(5, 2) NULL DEFAULT NULL,
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `timeStamp` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `isValid` int NULL DEFAULT 0,
-  PRIMARY KEY (`timeStamp`) USING BTREE
+  `isValid` int NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -79,7 +79,7 @@ CREATE TABLE `vendor`  (
   `email` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `UID` int NULL DEFAULT NULL,
   `privilege` int NOT NULL,
-  `isValid` int NOT NULL DEFAULT 0,
+  `isValid` int NOT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE

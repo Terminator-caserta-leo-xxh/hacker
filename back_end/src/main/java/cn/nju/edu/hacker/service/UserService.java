@@ -6,7 +6,6 @@ import cn.nju.edu.hacker.vo.VendorVO;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public interface UserService {
 
@@ -16,5 +15,8 @@ public interface UserService {
 
     ResponseVO studentLogin(StudentVO studentVO);
 
+    ResponseVO verifyEmail(String email);
+
     ResponseVO vendorRegister(VendorVO vendorVO);
+
 }

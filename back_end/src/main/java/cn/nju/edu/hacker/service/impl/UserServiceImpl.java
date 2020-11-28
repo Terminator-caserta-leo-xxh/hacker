@@ -7,17 +7,15 @@ import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.StudentVO;
 import cn.nju.edu.hacker.vo.VendorVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
-    private final StudentMapper studentMapper;
-
     @Autowired
-    public UserServiceImpl(StudentMapper studentMapper) {
-        this.studentMapper = studentMapper;
-    }
+    StudentMapper studentMapper;
 
     @Override
     public ResponseVO studentRegister(StudentVO studentVO) {
@@ -71,9 +69,11 @@ public class UserServiceImpl implements UserService {
             return ResponseVO.buildFailed("密码错误");
     }
 
-    private boolean verifyEmail(String email) {
-        return true;
+    @Override
+    public ResponseVO verifyEmail(String email) {
+        return null;
     }
+
 
     @Override
     public ResponseVO vendorRegister(VendorVO vendorVO) {
