@@ -112,6 +112,7 @@ CREATE TABLE `vendor`
     `localUrl`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `isValid`     int                                                           NOT NULL DEFAULT 0,
     `isOpen`      int                                                           NOT NULL DEFAULT 0,
+    `getNumber`   int                                                           NULL     DEFAULT 0,
     `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL     DEFAULT NULL,
     `address`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `beginTime`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,

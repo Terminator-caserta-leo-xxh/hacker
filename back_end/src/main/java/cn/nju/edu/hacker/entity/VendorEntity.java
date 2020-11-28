@@ -49,7 +49,7 @@ public class VendorEntity {
     private String address;
 
     @Basic
-    @Column(name = "locationUrl")
+    @Column(name = "localUrl")
     private String locationUrl;
 
     @Basic
@@ -59,5 +59,9 @@ public class VendorEntity {
     @Basic
     @Column(name = "endTime")
     private Date endTime;
+
+    @Basic
+    @Column(name = "getNumber")
+    private Integer getNumber;
 
 }

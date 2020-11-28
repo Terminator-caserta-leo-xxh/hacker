@@ -4,11 +4,13 @@ import cn.nju.edu.hacker.entity.OrderEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Setter
 @Getter
 public class CurrentOrderVO {
-    
     private int id;
+
+    private Integer number;
 
     private String description;
 
@@ -20,6 +22,7 @@ public class CurrentOrderVO {
 
     public CurrentOrderVO(OrderEntity entity) {
         id = entity.getId();
+        number = entity.getNumber();
         description = entity.getDescription();
         money = entity.getMoney();
         remarks = entity.getRemarks();

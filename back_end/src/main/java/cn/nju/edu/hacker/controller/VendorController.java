@@ -128,4 +128,11 @@ public class VendorController {
         return ResponseVO.buildSucceed("退出成功！", 0);
     }
 
+    @PostMapping("/finshOrder/{id}")
+    public ResponseVO finishOrder(HttpSession httpSession, @PathVariable int id) {
+        if (httpSession.getAttribute(String.valueOf(id)) == null)
+            return ResponseVO.buildFailed("请先登录！", -1);
+        else
+            return orderService.finishOrder(id);
+    }
 }

@@ -117,10 +117,32 @@ public class UserController {
         return orderService.changeOrder(orderForm);
     }
 
-    @PostMapping("/logout/status")
-    public ResponseVO logout(HttpSession httpSession) {
-        httpSession.invalidate();
-        return ResponseVO.buildSucceed("退出成功！", 0);
+
+    /**
+     * 确认拿走订单
+     *
+     * @param httpSession
+     * @param id
+     * @return
+     */
+    @PostMapping("/user/order/{id}/get")
+    public ResponseVO getOrder(HttpSession httpSession, @PathVariable int id) {
+        if (httpSession.getAttribute(String.valueOf(id)) == null)
+            return ResponseVO.buildFailed("请先登录！", -1);
+        return orderService.getOrder(id);
     }
 
+    /**
+     * 删除订单
+     *
+     * @param httpSession
+     * @param id
+     * @return
+     */
+    @PostMapping("/user/order/{id}/del")
+    public ResponseVO delOrder(HttpSession httpSession, @PathVariable int id) {
+        if (httpSession.getAttribute(String.valueOf(id)) == null)
+            return ResponseVO.buildFailed("请先登录！", -1);
+        return orderService.delOrder(id);
+    }
 }

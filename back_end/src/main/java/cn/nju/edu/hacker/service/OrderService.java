@@ -34,7 +34,7 @@ public interface OrderService {
      * @param oid
      * @return
      */
-    ResponseVO finishOrder(int oid);
+    ResponseVO payOrder(int oid);
 
     /**
      * 查找商家当前的订单
@@ -43,4 +43,24 @@ public interface OrderService {
      */
     ResponseVO getVendorOrders(int id);
 
+    /**
+     * 餐点制作完毕，订单完成
+     * @param id
+     * @return
+     */
+    ResponseVO finishOrder(int id);
+
+    /**
+     确认拿走订单
+     * @param id
+     * @return
+     */
+    ResponseVO getOrder(int id);
+
+    /**
+     * 删除订单
+     * @param id
+     * @return
+     */
+    ResponseVO delOrder(int id);
 }

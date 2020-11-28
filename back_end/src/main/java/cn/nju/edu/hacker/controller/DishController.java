@@ -66,6 +66,7 @@ public class DishController {
      * @return
      */
     @PostMapping("/buy")
+
     public ResponseVO buyDish(@RequestBody OrderForm orderForm) {
         return orderService.buyDish(orderForm);
     }
@@ -73,11 +74,12 @@ public class DishController {
     /**
      * 支付完成，改变订单状态
      *
-     * @param orderId
+     * @param id
      * @return
      */
-    @PostMapping("/{id}/pay")
-    public ResponseVO finishOrder(@PathVariable(value = "id") int orderId) {
-        return orderService.finishOrder(orderId);
+    @PostMapping("/pay/{id}")
+    public ResponseVO payOrder(@PathVariable int id) {
+        return orderService.payOrder(id);
     }
+
 }
