@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <Home/>
+<!--    <the-header></the-header>-->
+<!--    <home></home>-->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Home from "@/pages/Home";
+// import TheHeader from './components/TheHeader'
+// import LoginIn from "@/pages/LoginIn";
+// import SignUpPage from "@/pages/SignUp";
+
+// import TheHeader from "@/components/TheHeader";
+// import Home from "@/pages/Home";
 
 export default {
   name: 'App',
   components: {
-    Home,
-    //HelloWorld
+    // Home,
+    // TheHeader
+
   }
 }
 </script>

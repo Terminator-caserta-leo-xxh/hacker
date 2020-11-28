@@ -23,12 +23,10 @@
 
 <script>
 import LoginLogo from '../components/LoginLogo'
-import mixin from '../mixins'
-import { loginIn } from '../api/index'
+import { login } from '../api/index'
 
 export default {
   name: 'login-in',
-  mixins: [mixin],
   components: {
     LoginLogo
   },
@@ -74,10 +72,10 @@ export default {
       let params = new URLSearchParams()
       params.append('username', this.loginForm.username)
       params.append('password', this.loginForm.password)
-      loginIn(params)
+      login(params)
         .then(res => {
           // console.log('-----------获取登录信息---------------')
-          if (res.code === 1) {
+          if (res.code === 0) {
             _this.$message({
               message: '登录成功',
               type: 'success'
@@ -93,6 +91,7 @@ export default {
             _this.notify('用户名或密码错误', 'error')
           }
         })
+          // eslint-disable-next-line no-unused-vars
         .catch(failResponse => {})
     },
     setUserMsg (item) {
