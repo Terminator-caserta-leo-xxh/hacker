@@ -15,8 +15,10 @@ public interface UserService {
 
     ResponseVO studentLogin(StudentVO studentVO);
 
-    ResponseVO verifyEmail(String email);
+    ResponseVO studentLook(String uid);
 
     ResponseVO vendorRegister(VendorVO vendorVO);
+
+    ResponseVO verifyEmail(String email);
 
 }

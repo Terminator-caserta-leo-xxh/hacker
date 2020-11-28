@@ -1,6 +1,5 @@
 package cn.nju.edu.hacker.vo;
 
-import cn.nju.edu.hacker.entity.StudentEntity;
 import lombok.Getter;
 import lombok.Setter;
 

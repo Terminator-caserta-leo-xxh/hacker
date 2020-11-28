@@ -5,7 +5,9 @@ import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.StudentVO;
 import cn.nju.edu.hacker.vo.VendorVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -18,13 +20,30 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/api/student")
-    public ResponseVO studentRegister(StudentVO studentVO){
+    @PostMapping("/api/studentRegister")
+    public ResponseVO studentRegister(@RequestBody StudentVO studentVO) {
         return userService.studentRegister(studentVO);
     }
 
+    @PostMapping("/api/studentLogin")
+    public ResponseVO studentLogin(@RequestBody StudentVO studentVO) {
+        return userService.studentLogin(studentVO);
+    }
+
+    @PostMapping("/api/student/{uid}")
+    public ResponseVO studentLook(@PathVariable String uid) {
+        return userService.studentLook(uid);
+    }
+
+    @PostMapping("/api/studentFix")
+    public ResponseVO studentFix(@RequestBody StudentVO studentVO) {
+        return userService.studentFix(studentVO);
+    }
+
     @PostMapping("/api/vendor")
-    public ResponseVO studentRegister(VendorVO vendorVO){
+    public ResponseVO studentRegister(@RequestBody VendorVO vendorVO) {
         return userService.vendorRegister(vendorVO);
     }
+
+
 }

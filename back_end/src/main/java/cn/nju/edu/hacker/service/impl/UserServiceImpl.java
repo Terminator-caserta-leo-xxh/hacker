@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
         if (flag) {
             studentMapper.save(student);
             return ResponseVO.buildSucceed("修改成功");
-        }else
+        } else
             return ResponseVO.buildFailed("修改失败");
     }
 
@@ -64,9 +64,16 @@ public class UserServiceImpl implements UserService {
     public ResponseVO studentLogin(StudentVO studentVO) {
         StudentEntity student = studentMapper.findByUid(studentVO.getUid());
         if (student.getPasswd().equals(studentVO.getPasswd()))
-            return ResponseVO.buildSucceed("登陆成功",student);
+            return ResponseVO.buildSucceed("登陆成功", student);
         else
             return ResponseVO.buildFailed("密码错误");
+    }
+
+    @Override
+    public ResponseVO studentLook(String uid) {
+        int UID = Integer.parseInt(uid);
+        StudentEntity student = studentMapper.findByUid(UID);
+        return ResponseVO.buildSucceed("" + student);
     }
 
     @Override
