@@ -9,6 +9,12 @@ public class DishEntity {
 
     private String dishName;
     private String price;
+    /**
+     * price: [double单价]+[0/1]
+     * [0]-元/斤
+     * [1]-元/份
+     */
+    private String price;
     private Integer cumulativeSales;
     private Integer orderNums;
     private int timeType;

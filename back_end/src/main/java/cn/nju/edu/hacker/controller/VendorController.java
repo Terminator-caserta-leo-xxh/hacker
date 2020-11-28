@@ -62,6 +62,7 @@ public class VendorController {
         String email = vendorForm.getEmail();
 
         return vendorService.modifyInfo(userId, name, cellphone, email, beginTime, endTime, description, localPhotoUrl);
+
     }
 
 }

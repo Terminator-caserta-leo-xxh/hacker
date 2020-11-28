@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface DishMapper extends CrudRepository<DishEntity, Integer> {
     List<DishEntity> findByUid(int uid);
+
+    DishEntity findById(int id);
+
+    List<DishEntity> findByIsValid(int i);
 }

@@ -1,5 +1,5 @@
 {
-  "name": "untitled",
+  "name": "clients",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element": "^0.1.4",
+    "element-ui": "^2.14.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -19,6 +21,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "vue-router": "^3.4.9",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
