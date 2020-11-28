@@ -7,13 +7,14 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+
     private int id;
     private String username;
     private String passwd;
     private String phone;
     private String email;
     private int uid;
-    private int priviledge;
+    private int privilege;
     private Integer isValid;
 
     @Id
@@ -78,12 +79,12 @@ public class User {
 
     @Basic
     @Column(name = "priviledge")
-    public int getPriviledge() {
-        return priviledge;
+    public int getPrivilege() {
+        return privilege;
     }
 
-    public void setPriviledge(int priviledge) {
-        this.priviledge = priviledge;
+    public void setPrivilege(int privilege) {
+        this.privilege = privilege;
     }
 
     @Basic
@@ -105,7 +106,7 @@ public class User {
 
         if (id != user.id) return false;
         if (uid != user.uid) return false;
-        if (priviledge != user.priviledge) return false;
+        if (privilege != user.privilege) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (passwd != null ? !passwd.equals(user.passwd) : user.passwd != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
@@ -123,7 +124,7 @@ public class User {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + uid;
-        result = 31 * result + priviledge;
+        result = 31 * result + privilege;
         result = 31 * result + (isValid != null ? isValid.hashCode() : 0);
         return result;
     }

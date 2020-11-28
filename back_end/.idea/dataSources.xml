@@ -10,5 +10,13 @@
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="hacker/Hibernate" uuid="4445f0d2-7091-4048-9c39-307306bce074">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/hacker?serverTimezone=UTC&amp;useLegacyDatetimeCode=false&amp;useUnicode=true&amp;characterEncoding=utf8</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -11,4 +11,4 @@ spring:
     database: mysql
 
 server:
-  port: 8081
+  port: 8000
