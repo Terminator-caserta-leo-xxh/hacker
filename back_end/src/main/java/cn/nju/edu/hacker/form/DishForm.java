@@ -37,4 +37,8 @@ public class DishForm {
 
     private Integer maxSupply;
 
+    private String url;
+
+    private String period;
+
 }

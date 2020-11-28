@@ -9,7 +9,6 @@ import lombok.Setter;
 public class StudentVO {
     private int id;
     private String username;
-    //private String passwd;
     private String cellphone;
     private String email;
 

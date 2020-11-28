@@ -6,6 +6,7 @@ import cn.nju.edu.hacker.dao.StudentMapper;
 import cn.nju.edu.hacker.entity.DishEntity;
 import cn.nju.edu.hacker.entity.OrderEntity;
 import cn.nju.edu.hacker.entity.StudentEntity;
+import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.form.StudentForm;
 import cn.nju.edu.hacker.service.UserService;
 import cn.nju.edu.hacker.vo.CurrentOrderVO;
@@ -130,6 +131,25 @@ public class UserServiceImpl implements UserService {
             currentOrderVOS.add(new CurrentOrderVO(each));
         }
         return ResponseVO.buildSucceed("已获得当前订单", 0, currentOrderVOS);
+    }
+
+    @Override
+    public ResponseVO changeOrder(OrderForm orderForm) {
+        int id = orderForm.getId();
+        OrderEntity entity = orderMapper.findById(id);
+        if (entity == null) return ResponseVO.buildFailed("没有这个订单！", -1);
+
+        double money = orderForm.getMoney();
+        String sequence = orderForm.getSequence();
+        String remarks = orderForm.getRemarks();
+        String description = orderForm.getDescription();
+
+        if (money != 0.0) entity.setMoney(money);
+        if (sequence != null) entity.setSequence(sequence);
+        if (remarks != null) entity.setRemarks(remarks);
+        if (description != null) entity.setDescription(description);
+        orderMapper.save(entity);
+        return ResponseVO.buildSucceed("修改完成", 0);
     }
 
 

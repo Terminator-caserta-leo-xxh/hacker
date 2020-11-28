@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,6 +32,10 @@ public class VendorVO {
 
     private String address;
 
+    private Date beginTime;
+
+    private Date endTime;
+
     public VendorVO(VendorEntity entity) {
         this.id = entity.getId();
         this.username = entity.getUsername();
@@ -39,5 +45,7 @@ public class VendorVO {
         this.isValid = entity.getIsValid();
         this.description = entity.getDescription();
         this.address = entity.getDescription();
+        this.beginTime = entity.getBeginTime();
+        this.endTime = entity.getEndTime();
     }
 }

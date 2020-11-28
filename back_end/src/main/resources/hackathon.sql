@@ -38,17 +38,19 @@ CREATE TABLE `admin`
 DROP TABLE IF EXISTS `dish`;
 CREATE TABLE `dish`
 (
-    `dishName`        varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-    `price`           double(10, 2)                                                NULL DEFAULT NULL,
-    `cumulativeSales` int                                                          NULL DEFAULT NULL,
-    `orderNums`       int                                                          NULL DEFAULT NULL,
-    `timeType`        int                                                          NOT NULL,
-    `startTime`       date                                                         NULL DEFAULT NULL,
-    `endTime`         date                                                         NULL DEFAULT NULL,
-    `UID`             int                                                          NULL DEFAULT NULL,
-    `id`              int                                                          NOT NULL AUTO_INCREMENT,
-    `isValid`         int                                                          NULL DEFAULT 0,
-    `maxSupply`       int                                                          NULL DEFAULT NULL,
+    `dishName`        varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NOT NULL,
+    `price`           double(10, 2)                                                 NULL DEFAULT NULL,
+    `cumulativeSales` int                                                           NULL DEFAULT NULL,
+    `orderNums`       int                                                           NULL DEFAULT NULL,
+    `timeType`        int                                                           NOT NULL,
+    `startTime`       date                                                          NULL DEFAULT NULL,
+    `endTime`         date                                                          NULL DEFAULT NULL,
+    `UID`             int                                                           NULL DEFAULT NULL,
+    `id`              int                                                           NOT NULL AUTO_INCREMENT,
+    `isValid`         int                                                           NULL DEFAULT 0,
+    `maxSupply`       int                                                           NULL DEFAULT NULL,
+    `url`             varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+    `period`          varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
