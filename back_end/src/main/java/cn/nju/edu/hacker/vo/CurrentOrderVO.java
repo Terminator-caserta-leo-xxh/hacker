@@ -7,12 +7,15 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CurrentOrderVO {
-
+    
     private int id;
 
     private String description;
+
     private Double money;
+
     private String remarks;
+
     private String status;
 
     public CurrentOrderVO(OrderEntity entity) {

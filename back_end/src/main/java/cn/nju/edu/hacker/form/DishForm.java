@@ -25,6 +25,9 @@ public class DishForm {
 
     private Date endTime;
 
+    /**
+     * 表示店铺id
+     */
     private Integer uid;
 
     /**
@@ -33,5 +36,9 @@ public class DishForm {
     private Integer isValid;
 
     private Integer maxSupply;
+
+    private String url;
+
+    private String period;
 
 }

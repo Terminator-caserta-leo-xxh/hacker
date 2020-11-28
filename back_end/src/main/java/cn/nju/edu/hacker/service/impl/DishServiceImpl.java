@@ -7,7 +7,6 @@ import cn.nju.edu.hacker.entity.OrderEntity;
 import cn.nju.edu.hacker.form.DishForm;
 import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.service.DishService;
-import cn.nju.edu.hacker.vo.DishVO;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +59,5 @@ public class DishServiceImpl implements DishService {
         if (dish.size() == 0) return ResponseVO.buildFailed("无餐品", -1);
         return ResponseVO.buildSucceed(dish.size() + "", 1, dish);
     }
-
 
 }

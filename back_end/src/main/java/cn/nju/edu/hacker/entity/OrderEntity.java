@@ -7,16 +7,19 @@ import java.sql.Date;
  * 学生的具体的某个订单
  */
 @Entity
-@Table(name = "order", schema = "hackthon")
+@Table(name = "order")
 public class OrderEntity {
 
-    private Date getMealTime;
     private int studentId;
+
     private int vendorId;
     /**
      * format: [id1],[id2]...
      */
     private String sequence;
+
+    private Date getMealTime;
+
     private Double money;
     /**
      * 备注 额外要求
@@ -26,10 +29,12 @@ public class OrderEntity {
      * id自增长
      */
     private int id;
+
     /**
      * format: [id1]:[num1],[id2]:[num2]...
      */
     private String description;
+
     /**
      * isValid:
      * 0 - 暂未付款
@@ -38,6 +43,10 @@ public class OrderEntity {
      * -1 - 已付款且取货-失效
      */
     private int isValid;
+
+    /**
+     * 取餐码
+     */
     private int number;
 
 

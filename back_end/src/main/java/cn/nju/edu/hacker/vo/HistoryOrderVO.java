@@ -10,8 +10,11 @@ import java.util.List;
 public class HistoryOrderVO {
 
     private String description;
+
     private Double money;
+    
     private String remarks;
+
     private List<Integer> dishId;
 
 }
