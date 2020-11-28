@@ -108,12 +108,19 @@ public class UserController {
     /**
      * 修改订单、
      * 应建立在查看当前订单的前提上
+     *
      * @param orderForm
      * @return
      */
     @PostMapping("/user/changeOrder")
     public ResponseVO changeOrder(@RequestBody OrderForm orderForm) {
         return orderService.changeOrder(orderForm);
+    }
+
+    @PostMapping("/logout/status")
+    public ResponseVO logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return ResponseVO.buildSucceed("退出成功！", 0);
     }
 
 }

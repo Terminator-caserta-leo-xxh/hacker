@@ -22,7 +22,7 @@ public class AdminController {
     private VendorService vendorService;
 
     @PostMapping("/login/status")
-    public ResponseVO login(HttpSession httpSession, @RequestBody AdminForm adminForm) {
+    public ResponseVO login(@RequestBody AdminForm adminForm, HttpSession httpSession) {
         if (httpSession.getAttribute("adminName") != null) return ResponseVO.buildSucceed("您已登录！", 1);
         String name = adminForm.getName();
         String passwd = adminForm.getPasswd();
@@ -52,5 +52,11 @@ public class AdminController {
     public ResponseVO passRegister(HttpSession httpSession, @PathVariable(value = "id") int id) {
         if (httpSession.getAttribute("adminName") == null) return ResponseVO.buildFailed("请先登录！", -1);
         return adminService.validate(id);
+    }
+
+    @PostMapping("/logout/status")
+    public ResponseVO logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return ResponseVO.buildSucceed("退出成功！", 0);
     }
 }

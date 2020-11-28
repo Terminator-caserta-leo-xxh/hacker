@@ -46,8 +46,8 @@ public class VendorController {
     }
 
     @PostMapping("/login")
-    public ResponseVO login(HttpSession httpSession, @RequestParam(value = "name") String name, @RequestParam(value = "passwd") String passwd) {
-        if (httpSession.getAttribute("userName").equals(name)) return ResponseVO.buildSucceed("您已登录！", 1);
+    public ResponseVO login(@RequestParam(value = "name") String name, @RequestParam(value = "passwd") String passwd, HttpSession httpSession) {
+        if (name.equals(httpSession.getAttribute("userName"))) return ResponseVO.buildSucceed("您已登录！", 1);
         ResponseVO responseVO = vendorService.login(name, passwd);
         if (!responseVO.isSuccess()) return responseVO;
         VendorVO vendorVO = new VendorVO((VendorEntity) responseVO.getData());
@@ -109,6 +109,7 @@ public class VendorController {
 
     /**
      * 查找商家当前的订单
+     *
      * @param httpSession
      * @param id
      * @return
@@ -119,6 +120,12 @@ public class VendorController {
             return ResponseVO.buildFailed("请先登录！", -1);
         else
             return orderService.getVendorOrders(id);
+    }
+
+    @PostMapping("/logout/status")
+    public ResponseVO logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return ResponseVO.buildSucceed("退出成功！", 0);
     }
 
 }

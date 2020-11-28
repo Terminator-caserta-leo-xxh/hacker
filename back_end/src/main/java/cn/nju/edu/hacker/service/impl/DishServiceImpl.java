@@ -3,9 +3,7 @@ package cn.nju.edu.hacker.service.impl;
 import cn.nju.edu.hacker.dao.DishMapper;
 import cn.nju.edu.hacker.dao.OrderMapper;
 import cn.nju.edu.hacker.entity.DishEntity;
-import cn.nju.edu.hacker.entity.OrderEntity;
 import cn.nju.edu.hacker.form.DishForm;
-import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.service.DishService;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +20,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public ResponseVO addDish(DishForm dishForm) {
-
-        /*DishEntity dishEntity = new DishEntity();
-        dishEntity.setUid(dishForm.getUid());
-        dishEntity.setOrderNums(0);
-        dishEntity.setCumulativeSales(0);
-        dishEntity.setDishName(dishForm.getDishName());
-        dishEntity.setIsValid(1);
-        dishEntity.setPrice(dishForm.getPrice());
-        dishEntity.setStartTime(dishForm.getStartTime());
-        dishEntity.*/
-
+        
         return null;
     }
 

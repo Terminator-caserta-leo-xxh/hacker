@@ -1,6 +1,5 @@
 package cn.nju.edu.hacker.controller;
 
-import cn.nju.edu.hacker.dao.DishMapper;
 import cn.nju.edu.hacker.form.DishForm;
 import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.service.DishService;
@@ -24,7 +23,7 @@ public class DishController {
      * @return
      */
     @GetMapping("/dishes/{id}")
-    public ResponseVO getVendorDishes(@PathVariable int id) {
+    public ResponseVO getVendorDishes(@PathVariable(value = "id") int id) {
         return dishService.showVendorsDish(id);
     }
 
@@ -35,7 +34,7 @@ public class DishController {
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseVO getDishDetail(@PathVariable int id) {
+    public ResponseVO getDishDetail(@PathVariable(value = "id") int id) {
         return dishService.showDish(id);
     }
 
@@ -51,31 +50,34 @@ public class DishController {
 
     /**
      * 增加新的餐品
+     *
      * @param dishForm 需要携带商家ID
      * @return
      */
     @PostMapping("/add")
-    public ResponseVO addDish(DishForm dishForm) {
+    public ResponseVO addDish(@RequestBody DishForm dishForm) {
         return dishService.addDish(dishForm);
     }
 
     /**
      * 购买餐品，生成订单
+     *
      * @param orderForm
      * @return
      */
     @PostMapping("/buy")
-    public ResponseVO buyDish(OrderForm orderForm){
+    public ResponseVO buyDish(@RequestBody OrderForm orderForm) {
         return orderService.buyDish(orderForm);
     }
 
     /**
      * 支付完成，改变订单状态
+     *
      * @param orderId
      * @return
      */
-    @PostMapping("/pay")
-    public ResponseVO finishOrder(int orderId){
+    @PostMapping("/{id}/pay")
+    public ResponseVO finishOrder(@PathVariable(value = "id") int orderId) {
         return orderService.finishOrder(orderId);
     }
 }
