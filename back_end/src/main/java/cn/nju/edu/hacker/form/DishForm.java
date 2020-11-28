@@ -19,6 +19,8 @@ public class DishForm {
     /**
      * 早午饭
      */
+    private Integer timeType;
+
     private int id;
 
     private Date startTime;
@@ -40,5 +42,6 @@ public class DishForm {
     private String url;
 
     private String period;
+
 
 }

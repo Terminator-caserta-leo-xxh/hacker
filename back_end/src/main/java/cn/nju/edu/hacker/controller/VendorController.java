@@ -121,4 +121,11 @@ public class VendorController {
             return orderService.getVendorOrders(id);
     }
 
+    @PostMapping("/finshOrder/{id}")
+    public ResponseVO finishOrder(HttpSession httpSession,@PathVariable int id){
+        if (httpSession.getAttribute(String.valueOf(id)) == null)
+            return ResponseVO.buildFailed("请先登录！", -1);
+        else
+            return orderService.finishOrder(id);
+    }
 }

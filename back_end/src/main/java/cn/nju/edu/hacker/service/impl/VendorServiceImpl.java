@@ -9,6 +9,7 @@ import cn.nju.edu.hacker.vo.VendorVO;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -138,6 +139,15 @@ public class VendorServiceImpl implements VendorService {
         vendorMapper.save(vendorEntity);
         return ResponseVO.buildSucceed("营业状态改变成功！", 0);
 
+    }
+
+    @Scheduled(cron = "0 0 0 ? * *")
+    private void clearGetNumber() {
+        List<VendorEntity> vendors = (List<VendorEntity>) vendorMapper.findAll();
+        for (VendorEntity each : vendors) {
+            each.setGetNumber(0);
+            vendorMapper.save(each);
+        }
     }
 
 }

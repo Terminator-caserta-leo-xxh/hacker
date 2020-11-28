@@ -42,6 +42,4 @@ public class DishVO {
     private String url;
 
     private String period;
-
-
 }
