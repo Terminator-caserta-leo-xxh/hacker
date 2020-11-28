@@ -38,10 +38,8 @@ public class VendorServiceImpl implements VendorService {
         VendorEntity vendorEntity = new VendorEntity();
         vendorEntity.setUsername(name);
         vendorEntity.setAddress(address);
-        /**
-         * md5加密
-         */
-        vendorEntity.setPasswd(DigestUtils.md5Hex(passwd));
+
+        vendorEntity.setPasswd(passwd);
         vendorEntity.setCellphone(cellphone);
         vendorEntity.setDescription(description);
         vendorEntity.setLocationUrl(photoUrl);

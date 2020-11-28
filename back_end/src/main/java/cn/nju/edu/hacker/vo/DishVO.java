@@ -1,6 +1,7 @@
 package cn.nju.edu.hacker.vo;
 
 
+import cn.nju.edu.hacker.form.DishForm;
 import lombok.Data;
 
 import java.sql.Date;

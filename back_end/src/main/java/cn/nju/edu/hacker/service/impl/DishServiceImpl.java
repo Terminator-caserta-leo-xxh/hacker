@@ -7,7 +7,6 @@ import cn.nju.edu.hacker.entity.OrderEntity;
 import cn.nju.edu.hacker.form.DishForm;
 import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.service.DishService;
-import cn.nju.edu.hacker.vo.DishVO;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,27 +21,43 @@ public class DishServiceImpl implements DishService {
     OrderMapper orderMapper;
 
     @Override
-    public DishVO addDish(int vendorId, DishForm dishForm) {
+    public ResponseVO addDish(DishForm dishForm) {
+
+        /*DishEntity dishEntity = new DishEntity();
+        dishEntity.setUid(dishForm.getUid());
+        dishEntity.setOrderNums(0);
+        dishEntity.setCumulativeSales(0);
+        dishEntity.setDishName(dishForm.getDishName());
+        dishEntity.setIsValid(1);
+        dishEntity.setPrice(dishForm.getPrice());
+        dishEntity.setStartTime(dishForm.getStartTime());
+        dishEntity.*/
+
         return null;
     }
 
     @Override
-    public DishVO modifyDish(int vendorId, String name, String description,
-                             String price, boolean isSoldOut, String period) {
+    public ResponseVO modifyDish(DishForm dishForm) {
         return null;
     }
 
     @Override
     public ResponseVO showAllDish() {
         List<DishEntity> dish = dishMapper.findByIsValid(1);
-        return ResponseVO.buildSucceed(String.valueOf(dish.size()), 1, dish);
+        if (dish.size() == 0) return ResponseVO.buildFailed("无餐品", -1);
+        return ResponseVO.buildSucceed(dish.size() + "", 1, dish);
     }
 
     @Override
-    public ResponseVO showVendorsDish(String uid) {
-        int UID = Integer.parseInt(uid);
-        List<DishEntity> dish = dishMapper.findByUid(UID);
-        return ResponseVO.buildSucceed("", 0, dish);
+    public ResponseVO showDish(int id) {
+        return null;
+    }
+
+    @Override
+    public ResponseVO showVendorsDish(int id) {
+        List<DishEntity> dish = dishMapper.findByUid(id);
+        if (dish.size() == 0) return ResponseVO.buildFailed("无餐品", -1);
+        return ResponseVO.buildSucceed(dish.size() + "", 1, dish);
     }
 
     /**
@@ -63,7 +78,7 @@ public class DishServiceImpl implements DishService {
         order.setRemarks(orderForm.getRemarks());
         order.setIsValid(0);
         order.setSequence(orderForm.getSequence());
-        
+
         orderMapper.save(order);
         List<OrderEntity> orders = orderMapper.findByStudentIdAndVendorIdAndIsValid(order.getStudentId(), order.getVendorId(), 0);
         int Oid = orders.get(orders.size() - 1).getId();
