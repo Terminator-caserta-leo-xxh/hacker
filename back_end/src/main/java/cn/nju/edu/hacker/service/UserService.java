@@ -1,10 +1,7 @@
 package cn.nju.edu.hacker.service;
 
-import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.form.StudentForm;
 import cn.nju.edu.hacker.vo.ResponseVO;
-import cn.nju.edu.hacker.vo.StudentVO;
-import cn.nju.edu.hacker.vo.VendorVO;
 import org.springframework.stereotype.Service;
 
 
@@ -30,5 +27,4 @@ public interface UserService {
 
     ResponseVO getCurrentOrder(int id);
 
-    ResponseVO changeOrder(OrderForm orderForm);
 }

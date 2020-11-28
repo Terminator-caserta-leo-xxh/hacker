@@ -42,27 +42,28 @@ public class DishServiceImpl implements DishService {
     public ResponseVO showVendorsDish(String uid) {
         int UID = Integer.parseInt(uid);
         List<DishEntity> dish = dishMapper.findByUid(UID);
-        return ResponseVO.buildSucceed("", 1, dish);
+        return ResponseVO.buildSucceed("", 0, dish);
     }
 
     /**
      * 提交订单状态，暂未付款
      * 前端进行付款操作
+     *
      * @param orderForm
      * @return
      */
     @Override
     public ResponseVO buyDish(OrderForm orderForm) {
         OrderEntity order = new OrderEntity();
-        {
-            order.setStudentId(order.getStudentId());
-            order.setVendorId(order.getVendorId());
-            order.setDescription(orderForm.getDescription());
-            order.setMoney(orderForm.getMoney());
-            order.setRemarks(orderForm.getRemarks());
-            order.setIsValid(0);
-            order.setSequence(orderForm.getSequence());
-        }
+
+        order.setStudentId(order.getStudentId());
+        order.setVendorId(order.getVendorId());
+        order.setDescription(orderForm.getDescription());
+        order.setMoney(orderForm.getMoney());
+        order.setRemarks(orderForm.getRemarks());
+        order.setIsValid(0);
+        order.setSequence(orderForm.getSequence());
+        
         orderMapper.save(order);
         List<OrderEntity> orders = orderMapper.findByStudentIdAndVendorIdAndIsValid(order.getStudentId(), order.getVendorId(), 0);
         int Oid = orders.get(orders.size() - 1).getId();

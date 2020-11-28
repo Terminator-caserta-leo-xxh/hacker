@@ -6,7 +6,6 @@ import cn.nju.edu.hacker.dao.StudentMapper;
 import cn.nju.edu.hacker.entity.DishEntity;
 import cn.nju.edu.hacker.entity.OrderEntity;
 import cn.nju.edu.hacker.entity.StudentEntity;
-import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.form.StudentForm;
 import cn.nju.edu.hacker.service.UserService;
 import cn.nju.edu.hacker.vo.CurrentOrderVO;
@@ -15,6 +14,7 @@ import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.StudentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -132,15 +132,5 @@ public class UserServiceImpl implements UserService {
         return ResponseVO.buildSucceed("已获得当前订单", 0, currentOrderVOS);
     }
 
-    @Override
-    public ResponseVO changeOrder(OrderForm orderForm) {
-        OrderEntity entity = orderMapper.findById(orderForm.getId());
-        entity.setMoney(orderForm.getMoney());
-        entity.setSequence(orderForm.getSequence());
-        entity.setRemarks(orderForm.getRemarks());
-        entity.setDescription(orderForm.getDescription());
-        orderMapper.save(entity);
-        return ResponseVO.buildSucceed("修改完成", 0);
-    }
 
 }

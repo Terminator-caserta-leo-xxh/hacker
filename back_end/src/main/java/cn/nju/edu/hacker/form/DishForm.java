@@ -25,6 +25,9 @@ public class DishForm {
 
     private Date endTime;
 
+    /**
+     * 表示店铺id
+     */
     private Integer uid;
 
     /**
