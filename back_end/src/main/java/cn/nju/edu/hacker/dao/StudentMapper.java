@@ -14,4 +14,6 @@ public interface StudentMapper extends CrudRepository<StudentEntity, Integer> {
     List<StudentEntity> findAll();
 
     StudentEntity findById(int id);
+
+    StudentEntity findByUsername(String username);
 }

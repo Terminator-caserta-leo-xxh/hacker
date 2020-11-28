@@ -9,6 +9,7 @@ import lombok.Setter;
 public class CurrentOrderVO {
 
     private int id;
+
     private String description;
     private Double money;
     private String remarks;

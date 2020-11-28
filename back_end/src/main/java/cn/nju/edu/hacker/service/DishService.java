@@ -5,7 +5,9 @@ import cn.nju.edu.hacker.form.DishForm;
 import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.vo.DishVO;
 import cn.nju.edu.hacker.vo.ResponseVO;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface DishService {
 
     ResponseVO addDish(DishForm dishForm);
@@ -14,9 +16,6 @@ public interface DishService {
 
     ResponseVO showVendorsDish(int id);
 
-    ResponseVO buyDish(OrderForm orderVO);
-
-    ResponseVO finishOrder(int oid);
 
     ResponseVO showAllDish();
 

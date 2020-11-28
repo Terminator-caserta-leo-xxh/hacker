@@ -7,6 +7,8 @@ import cn.nju.edu.hacker.vo.StudentVO;
 import cn.nju.edu.hacker.vo.VendorVO;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 
 @Service
 public interface UserService {
@@ -15,20 +17,12 @@ public interface UserService {
 
     ResponseVO studentFix(StudentForm studentForm);
 
-    ResponseVO studentLogin(StudentForm studentForm);
+    ResponseVO studentLogin(HttpSession httpSession, StudentForm studentForm);
 
     ResponseVO studentLook(int id);
 
     ResponseVO verifyEmail(String email);
 
-    /**
-     * @param id 用户的ID
-     * @return
-     */
 
-    ResponseVO getShopHistory(int id);
-
-    ResponseVO getCurrentOrder(int id);
-
-    ResponseVO changeOrder(OrderForm orderForm);
+    ResponseVO studentExit(HttpSession httpSession, int id);
 }

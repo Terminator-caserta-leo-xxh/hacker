@@ -107,4 +107,18 @@ public class VendorController {
         return vendorService.openOrClose(vendorId);
     }
 
+    /**
+     * 查找商家当前的订单
+     * @param httpSession
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}/orders")
+    public ResponseVO showOrders(HttpSession httpSession, @PathVariable int id) {
+        if (httpSession.getAttribute(String.valueOf(id)) == null)
+            return ResponseVO.buildFailed("请先登录！", -1);
+        else
+            return orderService.getVendorOrders(id);
+    }
+
 }

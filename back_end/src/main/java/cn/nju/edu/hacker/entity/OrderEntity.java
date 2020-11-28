@@ -121,10 +121,6 @@ public class OrderEntity {
         this.isValid = isValid;
     }
 
-    public void setIsValid(int isValid) {
-        this.isValid = isValid;
-    }
-
     @Basic
     @Column(name = "number")
     public int getNumber() {

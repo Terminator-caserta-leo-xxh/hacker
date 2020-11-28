@@ -2,7 +2,9 @@ package cn.nju.edu.hacker.controller;
 
 import cn.nju.edu.hacker.dao.DishMapper;
 import cn.nju.edu.hacker.form.DishForm;
+import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.service.DishService;
+import cn.nju.edu.hacker.service.OrderService;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class DishController {
     @Autowired
     DishService dishService;
+    @Autowired
+    OrderService orderService;
 
     /**
      * 查询该商家的所有餐品
@@ -53,5 +57,25 @@ public class DishController {
     @PostMapping("/add")
     public ResponseVO addDish(DishForm dishForm) {
         return dishService.addDish(dishForm);
+    }
+
+    /**
+     * 购买餐品，生成订单
+     * @param orderForm
+     * @return
+     */
+    @PostMapping("/buy")
+    public ResponseVO buyDish(OrderForm orderForm){
+        return orderService.buyDish(orderForm);
+    }
+
+    /**
+     * 支付完成，改变订单状态
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/pay")
+    public ResponseVO finishOrder(int orderId){
+        return orderService.finishOrder(orderId);
     }
 }
