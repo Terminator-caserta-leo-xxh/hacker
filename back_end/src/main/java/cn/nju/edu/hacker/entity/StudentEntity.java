@@ -1,21 +1,17 @@
 package cn.nju.edu.hacker.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class User {
-
+@Table(name = "student", schema = "hackthon", catalog = "")
+public class StudentEntity {
     private int id;
     private String username;
     private String passwd;
-    private String phone;
+    private String cellphone;
     private String email;
     private int uid;
     private int privilege;
-    private Integer isValid;
 
     @Id
     @Column(name = "id")
@@ -48,13 +44,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "phone")
-    public String getPhone() {
-        return phone;
+    @Column(name = "cellphone")
+    public String getCellphone() {
+        return cellphone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 
     @Basic
@@ -78,7 +74,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "priviledge")
+    @Column(name = "privilege")
     public int getPrivilege() {
         return privilege;
     }
@@ -87,31 +83,20 @@ public class User {
         this.privilege = privilege;
     }
 
-    @Basic
-    @Column(name = "isValid")
-    public Integer getIsValid() {
-        return isValid;
-    }
-
-    public void setIsValid(Integer isValid) {
-        this.isValid = isValid;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        StudentEntity that = (StudentEntity) o;
 
-        if (id != user.id) return false;
-        if (uid != user.uid) return false;
-        if (privilege != user.privilege) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (passwd != null ? !passwd.equals(user.passwd) : user.passwd != null) return false;
-        if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (isValid != null ? !isValid.equals(user.isValid) : user.isValid != null) return false;
+        if (id != that.id) return false;
+        if (uid != that.uid) return false;
+        if (privilege != that.privilege) return false;
+        if (username != null ? !username.equals(that.username) : that.username != null) return false;
+        if (passwd != null ? !passwd.equals(that.passwd) : that.passwd != null) return false;
+        if (cellphone != null ? !cellphone.equals(that.cellphone) : that.cellphone != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
 
         return true;
     }
@@ -121,11 +106,10 @@ public class User {
         int result = id;
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (passwd != null ? passwd.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (cellphone != null ? cellphone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + uid;
         result = 31 * result + privilege;
-        result = 31 * result + (isValid != null ? isValid.hashCode() : 0);
         return result;
     }
 }
