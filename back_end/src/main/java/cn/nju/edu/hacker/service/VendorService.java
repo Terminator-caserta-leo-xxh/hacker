@@ -10,7 +10,7 @@ public interface VendorService {
 
     ResponseVO register(String name, String passwd, String cellphone, String address, Date beginTime, Date endTime, String description, String photoUrl);
 
-    VendorVO login(String name, String passwd);
+    ResponseVO login(String name, String passwd);
 
     VendorVO modifyInfo(int vendorId, String name, String cellphone, Date beginTime, Date endTime, String photoUrl);
 

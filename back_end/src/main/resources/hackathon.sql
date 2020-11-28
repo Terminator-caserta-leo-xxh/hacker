@@ -5,17 +5,38 @@
  Source Server Type    : MySQL
  Source Server Version : 80021
  Source Host           : localhost:3306
- Source Schema         : hackathon
+ Source Schema         : hackthon
 
  Target Server Type    : MySQL
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 28/11/2020 10:56:22
+ Date: 28/11/2020 17:18:12
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin`
+(
+    `id`     int                                                           NOT NULL,
+    `name`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+    `passwd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci
+  ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin`
+VALUES (1, 'hacker', '123456hacker');
 
 -- ----------------------------
 -- Table structure for dish
@@ -38,7 +59,11 @@ CREATE TABLE `dish`
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci
-  ROW_FORMAT = Dynamic;
+  ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of dish
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for order
@@ -56,9 +81,14 @@ CREATE TABLE `order`
     `isValid`     int                                                           NULL DEFAULT 0,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci
-  ROW_FORMAT = Dynamic;
+  ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for student
@@ -78,7 +108,11 @@ CREATE TABLE `student`
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci
-  ROW_FORMAT = Dynamic;
+  ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of student
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for vendor
@@ -103,6 +137,10 @@ CREATE TABLE `vendor`
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci
-  ROW_FORMAT = Dynamic;
+  ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of vendor
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

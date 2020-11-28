@@ -12,4 +12,6 @@ public interface VendorMapper extends CrudRepository<VendorEntity, Integer> {
     VendorEntity findByCellphone(String cellphone);
 
     VendorEntity findByAddress(String address);
+
+    VendorEntity findByUsernameAndPasswd(String name, String passwd);
 }

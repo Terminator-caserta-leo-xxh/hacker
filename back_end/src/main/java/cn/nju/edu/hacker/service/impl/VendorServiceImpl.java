@@ -21,9 +21,9 @@ public class VendorServiceImpl implements VendorService {
                                String cellphone, String address,
                                Date beginTime, Date endTime,
                                String description, String photoUrl) {
-        if (vendorMapper.findByUsername(name) != null) return ResponseVO.buildFailed("用户名已存在");
-        if (vendorMapper.findByCellphone(cellphone) != null) return ResponseVO.buildFailed("该手机号已被绑定");
-        if (vendorMapper.findByAddress(address) != null) return ResponseVO.buildFailed("该地址已经注册");
+        if (vendorMapper.findByUsername(name) != null) return ResponseVO.buildFailed("用户名已存在", -1);
+        if (vendorMapper.findByCellphone(cellphone) != null) return ResponseVO.buildFailed("该手机号已被绑定", -1);
+        if (vendorMapper.findByAddress(address) != null) return ResponseVO.buildFailed("该地址已经注册", -1);
 
         VendorEntity vendorEntity = new VendorEntity();
         vendorEntity.setUsername(name);
@@ -32,15 +32,21 @@ public class VendorServiceImpl implements VendorService {
         vendorEntity.setCellphone(cellphone);
         vendorEntity.setDescription(description);
         vendorEntity.setLocationUrl(photoUrl);
-
+        /**
+         * 0表示invalid，1表示valid
+         */
+        vendorEntity.setIsValid(0);
+        vendorEntity.setIsOpen(0);
         VendorEntity vendor = vendorMapper.save(vendorEntity);
 
-        return ResponseVO.buildSucceed("注册申请提交成功，请等待管理员审核", vendor);
+        return ResponseVO.buildSucceed("注册申请提交成功，请等待管理员审核！", 0, vendor);
     }
 
     @Override
-    public VendorVO login(String name, String passwd) {
-        return null;
+    public ResponseVO login(String name, String passwd) {
+        VendorEntity vendorEntity = vendorMapper.findByUsernameAndPasswd(name, passwd);
+        if (vendorEntity == null) return ResponseVO.buildFailed("未注册或密码不正确！", -1);
+        return ResponseVO.buildSucceed("登录成功！", 0, vendorEntity);
     }
 
     @Override
