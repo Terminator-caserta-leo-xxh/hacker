@@ -11,7 +11,7 @@ public class OrderEntity {
     private Integer sequence;
     private Double money;
     private String remarks;
-    private int timeStamp;
+    private int id;
     private String description;
     private Integer isValid;
 
@@ -76,13 +76,13 @@ public class OrderEntity {
     }
 
     @Id
-    @Column(name = "timeStamp")
-    public int getTimeStamp() {
-        return timeStamp;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setTimeStamp(int timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
@@ -115,7 +115,7 @@ public class OrderEntity {
         if (studentId != that.studentId) return false;
         if (vendorId != that.vendorId) return false;
         if (number != that.number) return false;
-        if (timeStamp != that.timeStamp) return false;
+        if (id != that.id) return false;
         if (sequence != null ? !sequence.equals(that.sequence) : that.sequence != null) return false;
         if (money != null ? !money.equals(that.money) : that.money != null) return false;
         if (remarks != null ? !remarks.equals(that.remarks) : that.remarks != null) return false;
@@ -133,7 +133,7 @@ public class OrderEntity {
         result = 31 * result + (sequence != null ? sequence.hashCode() : 0);
         result = 31 * result + (money != null ? money.hashCode() : 0);
         result = 31 * result + (remarks != null ? remarks.hashCode() : 0);
-        result = 31 * result + timeStamp;
+        result = 31 * result + id;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (isValid != null ? isValid.hashCode() : 0);
         return result;
