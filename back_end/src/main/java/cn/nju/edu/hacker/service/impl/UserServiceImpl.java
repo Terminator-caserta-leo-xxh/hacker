@@ -81,11 +81,4 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-
-    @Override
-    public ResponseVO vendorRegister(VendorVO vendorVO) {
-        return null;
-    }
-
-
 }

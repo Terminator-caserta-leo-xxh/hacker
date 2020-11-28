@@ -53,6 +53,7 @@ public class VendorServiceImpl implements VendorService {
     public VendorVO modifyInfo(int vendorId, String name,
                                String cellphone, Date beginTime, Date endTime,
                                String photoUrl) {
+
         return null;
     }
 
