@@ -1,14 +1,16 @@
 package cn.nju.edu.hacker.entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * 学生的具体的某个订单
  */
 @Entity
-@Table(name = "order")
+@Table(name = "order", schema = "hackthon")
 public class OrderEntity {
 
+    private Date getMealTime;
     private int studentId;
     private int vendorId;
     /**
@@ -28,7 +30,6 @@ public class OrderEntity {
      * format: [id1]:[num1],[id2]:[num2]...
      */
     private String description;
-
     /**
      * isValid:
      * 0 - 暂未付款
@@ -37,6 +38,8 @@ public class OrderEntity {
      * -1 - 已付款且取货-失效
      */
     private int isValid;
+    private int number;
+
 
     @Basic
     @Column(name = "studentID")
@@ -58,6 +61,15 @@ public class OrderEntity {
         this.vendorId = vendorId;
     }
 
+    @Basic
+    @Column(name = "getMealTime")
+    public Date getGetMealTime() {
+        return getMealTime;
+    }
+
+    public void setGetMealTime(Date getMealTime) {
+        this.getMealTime = getMealTime;
+    }
 
     @Basic
     @Column(name = "sequence")
@@ -89,16 +101,6 @@ public class OrderEntity {
         this.remarks = remarks;
     }
 
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Basic
     @Column(name = "description")
     public String getDescription() {
@@ -115,9 +117,32 @@ public class OrderEntity {
         return isValid;
     }
 
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
+    }
+
     public void setIsValid(int isValid) {
         this.isValid = isValid;
     }
 
+    @Basic
+    @Column(name = "number")
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }

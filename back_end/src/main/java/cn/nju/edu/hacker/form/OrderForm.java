@@ -1,5 +1,6 @@
 package cn.nju.edu.hacker.form;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +15,6 @@ public class OrderForm {
     private Double money;
     private String remarks;
     private String description;
+    private Data getMealTime;
 
 }
