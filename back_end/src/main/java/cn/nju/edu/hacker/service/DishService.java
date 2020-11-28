@@ -8,15 +8,17 @@ import cn.nju.edu.hacker.vo.ResponseVO;
 
 public interface DishService {
 
-    DishVO addDish(int vendorId, DishForm dishForm);
+    ResponseVO addDish(DishForm dishForm);
 
-    DishVO modifyDish(int vendorId, String name, String description, String price, boolean isSoldOut, String period);
+    ResponseVO modifyDish(DishForm dishForm);
 
-    ResponseVO showVendorsDish(String uid);
+    ResponseVO showVendorsDish(int id);
 
     ResponseVO buyDish(OrderForm orderVO);
 
     ResponseVO finishOrder(int oid);
 
     ResponseVO showAllDish();
+
+    ResponseVO showDish(int id);
 }

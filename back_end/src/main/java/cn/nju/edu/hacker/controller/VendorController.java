@@ -106,4 +106,5 @@ public class VendorController {
         int vendorId = (Integer) httpSession.getAttribute("userId");
         return vendorService.openOrClose(vendorId);
     }
+
 }
