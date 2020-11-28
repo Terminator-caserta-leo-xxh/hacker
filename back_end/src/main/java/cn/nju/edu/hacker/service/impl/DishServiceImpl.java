@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service(value = "dishService")
 public class DishServiceImpl implements DishService {
     @Autowired
     DishMapper dishMapper;
@@ -35,16 +35,22 @@ public class DishServiceImpl implements DishService {
     @Override
     public ResponseVO showAllDish() {
         List<DishEntity> dish = dishMapper.findByIsValid(1);
-        return ResponseVO.buildSucceed(String.valueOf(dish.size()),1, dish);
+        return ResponseVO.buildSucceed(String.valueOf(dish.size()), 1, dish);
     }
 
     @Override
     public ResponseVO showVendorsDish(String uid) {
         int UID = Integer.parseInt(uid);
         List<DishEntity> dish = dishMapper.findByUid(UID);
-        return ResponseVO.buildSucceed("",1,dish);
+        return ResponseVO.buildSucceed("", 1, dish);
     }
 
+    /**
+     * 提交订单状态，暂未付款
+     * 前端进行付款操作
+     * @param orderForm
+     * @return
+     */
     @Override
     public ResponseVO buyDish(OrderForm orderForm) {
         OrderEntity order = new OrderEntity();
@@ -60,9 +66,15 @@ public class DishServiceImpl implements DishService {
         orderMapper.save(order);
         List<OrderEntity> orders = orderMapper.findByStudentIdAndVendorIdAndIsValid(order.getStudentId(), order.getVendorId(), 0);
         int Oid = orders.get(orders.size() - 1).getId();
-        return ResponseVO.buildSucceed("订单已提交", Oid);
+        return ResponseVO.buildSucceed("订单已提交", 0, Oid);
     }
 
+    /**
+     * 付完款，进入付款结束 而 未取餐 状态
+     *
+     * @param oid
+     * @return
+     */
     @Override
     public ResponseVO finishOrder(int oid) {
         OrderEntity order = orderMapper.findById(oid);
@@ -82,7 +94,7 @@ public class DishServiceImpl implements DishService {
             sequence = sequence.substring(0, index);
         }
 
-        return ResponseVO.buildSucceed("订单+1",1);
+        return ResponseVO.buildSucceed("订单+1", 1);
     }
 
 

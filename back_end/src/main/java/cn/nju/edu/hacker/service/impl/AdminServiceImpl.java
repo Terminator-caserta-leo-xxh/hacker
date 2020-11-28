@@ -6,7 +6,7 @@ import cn.nju.edu.hacker.vo.ResponseVO;
 import cn.nju.edu.hacker.vo.VendorVO;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service(value = "adminService")
 public class AdminServiceImpl implements AdminService {
     @Override
     public AdminVO login(String name, String passwd) {

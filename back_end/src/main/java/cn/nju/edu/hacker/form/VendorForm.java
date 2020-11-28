@@ -23,4 +23,6 @@ public class VendorForm {
 
     private String description;
 
+    private String email;
+
 }

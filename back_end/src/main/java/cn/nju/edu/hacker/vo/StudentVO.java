@@ -1,5 +1,6 @@
 package cn.nju.edu.hacker.vo;
 
+import cn.nju.edu.hacker.entity.StudentEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,9 +9,14 @@ import lombok.Setter;
 public class StudentVO {
     private int id;
     private String username;
-    private String passwd;
+    //private String passwd;
     private String cellphone;
     private String email;
-    private int uid;
-    private int privilege;
+
+    public StudentVO(StudentEntity entity) {
+        id = entity.getId();
+        username = entity.getUsername();
+        cellphone = entity.getCellphone();
+        email = entity.getEmail();
+    }
 }
