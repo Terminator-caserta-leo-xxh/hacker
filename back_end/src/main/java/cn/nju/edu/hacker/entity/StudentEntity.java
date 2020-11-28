@@ -3,7 +3,15 @@ package cn.nju.edu.hacker.entity;
 import javax.persistence.*;
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "student", schema = "hackthon", catalog = "")
+=======
+<<<<<<< HEAD
+@Table(name = "student")
+=======
+@Table(name = "student", schema = "hackthon")
+>>>>>>> tmp
+>>>>>>> ed9e6ca7c9e5b7e860553d604ffd8d353b5d221e
 public class StudentEntity {
     private int id;
     private String username;

@@ -3,15 +3,15 @@ package cn.nju.edu.hacker.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "vendor", schema = "hackthon", catalog = "")
+@Table(name = "vendor")
 public class VendorEntity {
+
     private int id;
     private String username;
     private String passwd;
     private String cellphone;
     private String email;
     private Integer uid;
-    private int privilege;
     private int isValid;
     private String description;
     private String address;
@@ -77,16 +77,6 @@ public class VendorEntity {
     }
 
     @Basic
-    @Column(name = "privilege")
-    public int getPrivilege() {
-        return privilege;
-    }
-
-    public void setPrivilege(int privilege) {
-        this.privilege = privilege;
-    }
-
-    @Basic
     @Column(name = "isValid")
     public int getIsValid() {
         return isValid;
@@ -120,11 +110,8 @@ public class VendorEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         VendorEntity that = (VendorEntity) o;
-
         if (id != that.id) return false;
-        if (privilege != that.privilege) return false;
         if (isValid != that.isValid) return false;
         if (username != null ? !username.equals(that.username) : that.username != null) return false;
         if (passwd != null ? !passwd.equals(that.passwd) : that.passwd != null) return false;
@@ -145,7 +132,6 @@ public class VendorEntity {
         result = 31 * result + (cellphone != null ? cellphone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (uid != null ? uid.hashCode() : 0);
-        result = 31 * result + privilege;
         result = 31 * result + isValid;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);

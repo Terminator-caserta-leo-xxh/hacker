@@ -4,8 +4,9 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "dish", schema = "hackthon", catalog = "")
+@Table(name = "dish")
 public class DishEntity {
+
     private String dishName;
     private Double price;
     private Integer cumulativeSales;

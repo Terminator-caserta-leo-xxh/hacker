@@ -3,7 +3,7 @@ package cn.nju.edu.hacker.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order", schema = "hackthon", catalog = "")
+@Table(name = "order")
 public class OrderEntity {
     private int studentId;
     private int vendorId;
