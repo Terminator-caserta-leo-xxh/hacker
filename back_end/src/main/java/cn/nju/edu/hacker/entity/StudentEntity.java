@@ -11,7 +11,6 @@ public class StudentEntity {
     private String passwd;
     private String cellphone;
     private String email;
-    private int uid;
 
     @Id
     @Column(name = "id")
@@ -61,16 +60,6 @@ public class StudentEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Basic
-    @Column(name = "UID")
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
     }
 
 }

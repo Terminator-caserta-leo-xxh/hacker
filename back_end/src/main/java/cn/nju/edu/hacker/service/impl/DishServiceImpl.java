@@ -3,87 +3,95 @@ package cn.nju.edu.hacker.service.impl;
 import cn.nju.edu.hacker.dao.DishMapper;
 import cn.nju.edu.hacker.dao.OrderMapper;
 import cn.nju.edu.hacker.entity.DishEntity;
-import cn.nju.edu.hacker.entity.OrderEntity;
 import cn.nju.edu.hacker.form.DishForm;
-import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.service.DishService;
-import cn.nju.edu.hacker.vo.DishVO;
 import cn.nju.edu.hacker.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service(value = "dishService")
 public class DishServiceImpl implements DishService {
     @Autowired
     DishMapper dishMapper;
     @Autowired
     OrderMapper orderMapper;
 
+    /**
+     * 添加餐品
+     *
+     * @param dishForm
+     * @return
+     */
     @Override
-    public DishVO addDish(int vendorId, DishForm dishForm) {
-        return null;
+    public ResponseVO addDish(DishForm dishForm) {
+
+        DishEntity dishEntity = new DishEntity();
+        dishEntity.setOrderNums(0);
+        dishEntity.setCumulativeSales(0);
+        dishEntity.setDishName(dishForm.getDishName());
+        dishEntity.setIsValid(1);
+        dishEntity.setPrice(dishForm.getPrice());
+        dishEntity.setStartTime(dishForm.getStartTime());
+        dishEntity.setEndTime(dishForm.getEndTime());
+        dishEntity.setUid(dishForm.getUid());
+        dishEntity.setPeriod(dishForm.getPeriod());
+        dishEntity.setTimeType(dishForm.getTimeType());
+
+        dishMapper.save(dishEntity);
+        return ResponseVO.buildSucceed("添加成功", 0);
     }
 
+    /**
+     * 修改菜品
+     *
+     * @param dishForm
+     * @return
+     */
     @Override
-    public DishVO modifyDish(int vendorId, String name, String description,
-                             String price, boolean isSoldOut, String period) {
-        return null;
+    public ResponseVO modifyDish(DishForm dishForm) {
+        DishEntity dishEntity = dishMapper.findById(dishForm.getId());
+        if (dishEntity == null)
+            return ResponseVO.buildFailed("不存在的菜品", -1);
+        dishEntity.setOrderNums(0);
+        dishEntity.setCumulativeSales(0);
+        if (dishForm.getDishName() != null) dishEntity.setDishName(dishForm.getDishName());
+        dishEntity.setIsValid(1);
+        if (dishForm.getPrice() != null) dishEntity.setPrice(dishForm.getPrice());
+        if (dishForm.getStartTime() != null) dishEntity.setStartTime(dishForm.getStartTime());
+        if (dishForm.getEndTime() != null) dishEntity.setEndTime(dishForm.getEndTime());
+        if (dishForm.getPeriod() != null) dishEntity.setPeriod(dishForm.getPeriod());
+        if (dishForm.getTimeType() != null) dishEntity.setTimeType(dishForm.getTimeType());
+        dishMapper.save(dishEntity);
+        return ResponseVO.buildSucceed("修改成功", 0);
     }
 
     @Override
     public ResponseVO showAllDish() {
         List<DishEntity> dish = dishMapper.findByIsValid(1);
-        return ResponseVO.buildSucceed(String.valueOf(dish.size()),1, dish);
+        if (dish.size() == 0) return ResponseVO.buildFailed("无餐品", -1);
+        return ResponseVO.buildSucceed(dish.size() + "", 1, dish);
     }
 
     @Override
-    public ResponseVO showVendorsDish(String uid) {
-        int UID = Integer.parseInt(uid);
-        List<DishEntity> dish = dishMapper.findByUid(UID);
-        return ResponseVO.buildSucceed("",1,dish);
+    public ResponseVO showDish(int id) {
+        DishEntity dish = dishMapper.findById(id);
+        if (dish == null) return ResponseVO.buildFailed("无餐品", -1);
+        return ResponseVO.buildSucceed("", 0, dish);
     }
 
+    /**
+     * 展示商家的所有餐品
+     *
+     * @param id vendorId
+     * @return
+     */
     @Override
-    public ResponseVO buyDish(OrderForm orderForm) {
-        OrderEntity order = new OrderEntity();
-        {
-            order.setStudentId(order.getStudentId());
-            order.setVendorId(order.getVendorId());
-            order.setDescription(orderForm.getDescription());
-            order.setMoney(orderForm.getMoney());
-            order.setRemarks(orderForm.getRemarks());
-            order.setIsValid(0);
-            order.setSequence(orderForm.getSequence());
-        }
-        orderMapper.save(order);
-        List<OrderEntity> orders = orderMapper.findByStudentIdAndVendorIdAndIsValid(order.getStudentId(), order.getVendorId(), 0);
-        int Oid = orders.get(orders.size() - 1).getId();
-        return ResponseVO.buildSucceed("订单已提交", Oid);
+    public ResponseVO showVendorsDish(int id) {
+        List<DishEntity> dish = dishMapper.findByUid(id);
+        if (dish.size() == 0) return ResponseVO.buildFailed("无餐品", -1);
+        return ResponseVO.buildSucceed(dish.size() + "", 1, dish);
     }
-
-    @Override
-    public ResponseVO finishOrder(int oid) {
-        OrderEntity order = orderMapper.findById(oid);
-        order.setIsValid(1);
-        orderMapper.save(order);
-        String sequence = order.getSequence();
-        /**
-         * 解析餐品sequence
-         * 实现预约数的变化
-         */
-        int index;
-        sequence = ',' + sequence;
-        while ((index = sequence.lastIndexOf(",")) != -1) {
-            DishEntity dish = dishMapper.findById(Integer.parseInt(sequence.substring(index + 1)));
-            dish.setCumulativeSales(dish.getCumulativeSales() + 1);
-            dish.setOrderNums(dish.getOrderNums() + 1);
-            sequence = sequence.substring(0, index);
-        }
-
-        return ResponseVO.buildSucceed("订单+1",1);
-    }
-
 
 }

@@ -13,6 +13,10 @@ public interface OrderMapper extends CrudRepository<OrderEntity, Integer> {
 
     List<OrderEntity> findByStudentId(int studentId);
 
+    List<OrderEntity> findByIsValid(int isValid);
+
+    List<OrderEntity> findByVendorIdAndIsValid(int vendorId,Integer isValid);
+
     List<OrderEntity> findByStudentIdAndIsValid(int studentId, Integer isValid);
 
     List<OrderEntity> findByStudentIdAndVendorIdAndIsValid(int studentId, int vendorId, Integer isValid);

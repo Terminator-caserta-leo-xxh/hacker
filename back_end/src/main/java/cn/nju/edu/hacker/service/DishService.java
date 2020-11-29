@@ -5,18 +5,19 @@ import cn.nju.edu.hacker.form.DishForm;
 import cn.nju.edu.hacker.form.OrderForm;
 import cn.nju.edu.hacker.vo.DishVO;
 import cn.nju.edu.hacker.vo.ResponseVO;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface DishService {
 
-    DishVO addDish(int vendorId, DishForm dishForm);
+    ResponseVO addDish(DishForm dishForm);
 
-    DishVO modifyDish(int vendorId, String name, String description, String price, boolean isSoldOut, String period);
+    ResponseVO modifyDish(DishForm dishForm);
 
-    ResponseVO showVendorsDish(String uid);
+    ResponseVO showVendorsDish(int id);
 
-    ResponseVO buyDish(OrderForm orderVO);
-
-    ResponseVO finishOrder(int oid);
 
     ResponseVO showAllDish();
+
+    ResponseVO showDish(int id);
 }

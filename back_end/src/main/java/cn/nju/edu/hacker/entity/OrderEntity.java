@@ -1,6 +1,7 @@
 package cn.nju.edu.hacker.entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * 学生的具体的某个订单
@@ -10,11 +11,15 @@ import javax.persistence.*;
 public class OrderEntity {
 
     private int studentId;
+
     private int vendorId;
     /**
      * format: [id1],[id2]...
      */
     private String sequence;
+
+    private Date getMealTime;
+
     private Double money;
     /**
      * 备注 额外要求
@@ -24,14 +29,26 @@ public class OrderEntity {
      * id自增长
      */
     private int id;
+
     /**
      * format: [id1]:[num1],[id2]:[num2]...
      */
     private String description;
+
     /**
-     * 是否完成
+     * isValid:
+     * 0 - 暂未付款
+     * 1 - 已付款且没做好
+     * 2 - 已付款，做好而未取货
+     * -1 - 已付款且取货-失效
      */
     private int isValid;
+
+    /**
+     * 取餐码
+     */
+    private int number;
+
 
     @Basic
     @Column(name = "studentID")
@@ -53,6 +70,15 @@ public class OrderEntity {
         this.vendorId = vendorId;
     }
 
+    @Basic
+    @Column(name = "getMealTime")
+    public Date getGetMealTime() {
+        return getMealTime;
+    }
+
+    public void setGetMealTime(Date getMealTime) {
+        this.getMealTime = getMealTime;
+    }
 
     @Basic
     @Column(name = "sequence")
@@ -84,16 +110,6 @@ public class OrderEntity {
         this.remarks = remarks;
     }
 
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Basic
     @Column(name = "description")
     public String getDescription() {
@@ -110,27 +126,28 @@ public class OrderEntity {
         return isValid;
     }
 
-    public void setIsValid(int isValid) {
+    public void setIsValid(Integer isValid) {
         this.isValid = isValid;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Basic
+    @Column(name = "number")
+    public int getNumber() {
+        return number;
+    }
 
-        OrderEntity that = (OrderEntity) o;
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
-        if (studentId != that.studentId) return false;
-        if (vendorId != that.vendorId) return false;
-        if (id != that.id) return false;
-        if (isValid != that.isValid) return false;
-        if (sequence != null ? !sequence.equals(that.sequence) : that.sequence != null) return false;
-        if (money != null ? !money.equals(that.money) : that.money != null) return false;
-        if (remarks != null ? !remarks.equals(that.remarks) : that.remarks != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
 
-        return true;
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

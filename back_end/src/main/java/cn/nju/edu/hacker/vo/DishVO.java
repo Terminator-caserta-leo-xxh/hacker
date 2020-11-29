@@ -39,4 +39,7 @@ public class DishVO {
 
     private Integer maxSupply;
 
+    private String url;
+
+    private String period;
 }
