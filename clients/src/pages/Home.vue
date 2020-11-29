@@ -2,9 +2,6 @@
   <div class="home">
     <!--菜品展示-->
     <swiper :swiperList="swiperList"/>
-    <div>
-      测试
-    </div>
   </div>
 </template>
 
@@ -14,7 +11,9 @@ import {swiperList} from '@/assets/data/swiper';
 
 export default {
 name: "home",
-  components: {Swiper},
+  components: {
+    Swiper
+  },
   data (){
     return{
         swiperList: [],

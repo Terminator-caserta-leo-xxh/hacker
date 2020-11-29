@@ -1,28 +1,27 @@
-@import "var.scss";
 @import "global.scss";
 
 .login-logo {
-  background-color: $color-blue-light;
+  background-color: #2aa3ef;
   height: 100vh;
   width: 50vw;
   min-width: 650px;
   overflow: hidden;
   @include layout(center, center);
   .icon {
-    @include icon(6.5em, $color-blue-dark);
+    @include icon(6.5em, #2796dd);
     transform: rotate(-30deg);
   }
 }
 
 .login {
   position: absolute;
-  margin-left: 850px;
+  margin-left: 750px;
   width: 300px;
   height: 210px;
-  top: $header-height + 60px;
+  top: 70px + 60px;
   padding: 30px 50px;
   border-radius: 10px;
-  background-color: $color-white;
+  background-color: #ffffff;
 
   .login-head {
     text-align: center;
